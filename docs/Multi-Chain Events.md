@@ -37,22 +37,25 @@
     * 原文：
         * 经过以上分析，结果已经很明确了，攻击者只需在其他链通过 crossChain 正常发起跨链操作的交易，此交易目的是为了调用 EthCrossChainData 合约的 putCurEpochConPubKeyBytes 函数以修改 Keeper 角色。随后通过正常的跨链流程，Keeper 会解析用户请求的目标合约以及调用参数，构造出一个新的交易提交到以太坊上。这本质上也只是一笔正常的跨链操作，因此可以直接通过 Keeper 检查与默克尔根检查。最后成功执行修改 Keeper 的操作。
         * 但我们注意到 putCurEpochConPubKeyBytes 函数定义为
-```plain
-function putCurEpochConPubKeyBytes(bytes calldata curEpochPkBytes) external returns (bool);
-```
+        ```
+        function putCurEpochConPubKeyBytes(bytes calldata curEpochPkBytes) external returns (bool);
+        ```
         * 而_executeCrossChainTx 函数执行的定义为
-```plain
-abi.encodePacked(bytes4(keccak256(abi.encodePacked(_method, "(bytes,bytes,uint64)")))
-```
+        ```
+        abi.encodePacked(bytes4(keccak256(abi.encodePacked(_method, "(bytes,bytes,uint64)")))
+        ```
         * 我们可以知道这两个函数的函数签名在正常情况下传入的_method 为 putCurEpochConPubKeyBytes 肯定是完全不同的，因此通过_toContract.call 理论上是无法调用到 putCurEpochConPubKeyBytes 函数的。但_method 是攻击者可以控制的，其完全可以通过枚举各个字符组合以获得与调用 putCurEpochConPubKeyBytes 函数相同的函数签名，这要求其只需枚举前 4 个字节符合即可。我们也可以自己尝试枚举验证；
-    * 系统由中继链keeper来负责验证并签名；
-    * 由于没有对跨链合约调用的合约方法名进行判断，那么跨链系统合约的接口也可能被调用；
-    * 攻击者使用了哈希碰撞来调用系统方法 `putCurEpochConPubKeyBytes` ，且没有看到对调用源sender进行验证的地方；
-    * 如果目的链被调用的合约，无法检查源链调用者的身份信息，则都可能发生Poly所遭遇的问题；
+        * 系统由中继链keeper来负责验证并签名；
+        * 由于没有对跨链合约调用的合约方法名进行判断，那么跨链系统合约的接口也可能被调用；
+        * 攻击者使用了哈希碰撞来调用系统方法 `putCurEpochConPubKeyBytes` ，且没有看到对调用源sender进行验证的地方；
+        * 如果目的链被调用的合约，无法检查源链调用者的身份信息，则都可能发生Poly所遭遇的问题；
+
 * **对我们的启发：**
     * 我们目前已经有相关机制来应对这个情况
         * SQOS中的权限验证机制（已经实现），使目的链被调用时，可以先去检查源链的调用者、以及相关调用接口；
         * 目的链所检查的这些相关权限的事项，不能由用户自己打包，需要由底层的跨链合约来打包；
+    
+
 ## Anyswap
 
 * 私钥被破解
