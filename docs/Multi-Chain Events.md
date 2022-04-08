@@ -17,14 +17,15 @@
     * 众所周知，Solidity是没有类似Python中**KeyError**的概念的，如果映射（mapping）中不存在这个键，则会返回0，**然而这里没有对返回值进行检查；**
     * 导致任意攻击者，只自己随机生成地址并提供签名，则都能冒充成验证者（mapping失败返回0，但没有进行检查）；
     * authQuotaOf在实现逻辑上的错误：
-
-
-
+![1](https://user-images.githubusercontent.com/83746881/162397382-1443cfa8-3c1e-4fe4-ae94-79003b47beaf.png)
+![2](https://user-images.githubusercontent.com/83746881/162397409-14f39bc3-41d8-46f0-9869-9409808e9fd8.png)
+![3](https://user-images.githubusercontent.com/83746881/162397423-0d67a77d-c852-4baf-96bc-a6fef91aab22.png)
+![4](https://user-images.githubusercontent.com/83746881/162397434-959e3b6a-792b-4052-9e0e-f81abefcbbd5.png)
 
     * 总结一下，receive函数实现的整个过程，都没有对传入的Signatory的合法性进行检查。因此攻击者只需要随机生成一个地址并生成对应的签名，即可骗过ChainSwap，自己为自己提供签名。同时，由于authQuotaOf在实现逻辑上的错误，在Signatory不合法时会返回一个非常大的值，导致了这次攻击事件的发生。而本次攻击事件发生的本质，是没有对映射索引的值进行验证。由于Solidity并不会在映射的键不存在时触发任何错误（键是否存在只能靠返回值是否为0进行判断），因此这类检查就显得非常重要。正是由于（荒谬地）缺少这样的检查，导致了这次损失超过800万美元的攻击；
 * 验证者是自己选的，但以上漏洞导致任意用户都可以冒充：
     * 有趣的是，在管理者Factory的合约实现中，ChainSwap设计了一个变量来保存Signatory构成的数组，代码如下图所示：
-
+![5](https://user-images.githubusercontent.com/83746881/162397457-c2a13374-fec0-4f82-aabb-df4e829353d1.png)
     * 有趣的是，在管理者Factory的合约实现中，ChainSwap设计了一个变量来保存Signatory构成的数组，但很遗憾的是，通过对Factory合约实现的审计，我们发现这个变量仅仅是在管理Signatory配额的时候被使用，并没有验证一个任意地址是否包含在这个数组中的实现。
 * **对我们的启发：**
     * 我们合约中对验证的管理，在solidity视线中，也需要确保在代码中对每一次mapping查找结果的检查；
@@ -58,8 +59,7 @@ abi.encodePacked(bytes4(keccak256(abi.encodePacked(_method, "(bytes,bytes,uint64
     * 原因是R签名算法，两次签名使用了相同的随机数；
 * 1.18再次被攻击：（内容整理于[https://medium.com/zengo/without-permit-multichains-exploit-explained-8417e8c1639b](https://medium.com/zengo/without-permit-multichains-exploit-explained-8417e8c1639b)，侵删）
     * **该攻击发生在源链；**
-
-
+![6](https://user-images.githubusercontent.com/83746881/162397513-3c61bd82-659e-4d00-8008-08b0436c252e.png)
     * “1”中没有对token地址进行合法性验证，只是生成相关的“any”Token的调用接口，underlying直接映射成了真正的Token地址（如案发现场的WETH）；
     * “2”中，实际上相关的真实Token ERC20没有实现permit（**相当于做外包验证**），执行fallback后也没有错误提示，导致后续代码正常执行，**这一步是所有问题的关键**；（这是solidity不严谨导致的问题）
     * “3”中没有对token地址进行验证，按理说，“any”Token是anyswap自己生成的，但这里却没有去进行验证是否是自己生成的那个地址。在这次攻击中，该合约是攻击者伪造的，那么这里实际上把WETH转到了攻击者控制的合约中；
