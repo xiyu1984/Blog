@@ -1,10 +1,11 @@
 # 跨链攻击事件
 
 ## Ronin
-* Time: 03-23-2022, Event link:
+* Time: 03-23-2022
+* Event details:
 [1](https://learnblockchain.cn/article/3810), [2](https://news.bitcoin.com/axie-infinity-loses-620-million-after-hacker-compromised-ronin-validators/)
 
-* Reason:
+* Event Summary
     * The hacker compromised five validators' private key;
 * My Opinion:
     * The selection mechanism of off-chain validators is inadequate:
@@ -14,6 +15,7 @@
 ## chainswap
 
 * 合约漏洞：（内容整理于[https://zhuanlan.zhihu.com/p/389738041](https://zhuanlan.zhihu.com/p/389738041)，侵删）；
+* Event Summary
     * 众所周知，Solidity是没有类似Python中**KeyError**的概念的，如果映射（mapping）中不存在这个键，则会返回0，**然而这里没有对返回值进行检查；**
     * 导致任意攻击者，只自己随机生成地址并提供签名，则都能冒充成验证者（mapping失败返回0，但没有进行检查）；
     * authQuotaOf在实现逻辑上的错误：
@@ -33,7 +35,8 @@
 
 ## Poly Network
 
-* 问题所在（内容整理于[https://www.freebuf.com/vuls/284340.html](https://www.freebuf.com/vuls/284340.html)，侵删）：
+* Event details（内容整理于[https://www.freebuf.com/vuls/284340.html](https://www.freebuf.com/vuls/284340.html)，侵删）：
+* Event Summary
     * 原文：
         * 经过以上分析，结果已经很明确了，攻击者只需在其他链通过 crossChain 正常发起跨链操作的交易，此交易目的是为了调用 EthCrossChainData 合约的 putCurEpochConPubKeyBytes 函数以修改 Keeper 角色。随后通过正常的跨链流程，Keeper 会解析用户请求的目标合约以及调用参数，构造出一个新的交易提交到以太坊上。这本质上也只是一笔正常的跨链操作，因此可以直接通过 Keeper 检查与默克尔根检查。最后成功执行修改 Keeper 的操作。
         * 但我们注意到 putCurEpochConPubKeyBytes 函数定义为
@@ -58,24 +61,24 @@
 
 ## Anyswap
 
-* 私钥被破解
+* 首次被攻击，私钥被破解
     * 原因是R签名算法，两次签名使用了相同的随机数；
 * 1.18再次被攻击：（内容整理于[https://medium.com/zengo/without-permit-multichains-exploit-explained-8417e8c1639b](https://medium.com/zengo/without-permit-multichains-exploit-explained-8417e8c1639b)，侵删）
-    * **该攻击发生在源链；**
+    * **Event Summary**
+        * **该攻击发生在源链；**
 ![6](https://user-images.githubusercontent.com/83746881/162397513-3c61bd82-659e-4d00-8008-08b0436c252e.png)
-    * “1”中没有对token地址进行合法性验证，只是生成相关的“any”Token的调用接口，underlying直接映射成了真正的Token地址（如案发现场的WETH）；
-    * “2”中，实际上相关的真实Token ERC20没有实现permit（**相当于做外包验证**），执行fallback后也没有错误提示，导致后续代码正常执行，**这一步是所有问题的关键**；（这是solidity不严谨导致的问题）
-    * “3”中没有对token地址进行验证，按理说，“any”Token是anyswap自己生成的，但这里却没有去进行验证是否是自己生成的那个地址。在这次攻击中，该合约是攻击者伪造的，那么这里实际上把WETH转到了攻击者控制的合约中；
-    * “4”的问题实际上这次攻击中没有真正发生，因为在“3”执行后攻击者已经拿走token。“4”的问题是，如果真实Token ERC20没有实现permit，那么“2”验证会假通过，攻击者依然可以通过“4”完成正常跨链，然后在目的链中将资产取走。
+        * “1”中没有对token地址进行合法性验证，只是生成相关的“any”Token的调用接口，underlying直接映射成了真正的Token地址（如案发现场的WETH）；
+        * “2”中，实际上相关的真实Token ERC20没有实现permit（**相当于做外包验证**），执行fallback后也没有错误提示，导致后续代码正常执行，**这一步是所有问题的关键**；（这是solidity不严谨导致的问题）
+        * “3”中没有对token地址进行验证，按理说，“any”Token是anyswap自己生成的，但这里却没有去进行验证是否是自己生成的那个地址。在这次攻击中，该合约是攻击者伪造的，那么这里实际上把WETH转到了攻击者控制的合约中；
+        * “4”的问题实际上这次攻击中没有真正发生，因为在“3”执行后攻击者已经拿走token。“4”的问题是，如果真实Token ERC20没有实现permit，那么“2”验证会假通过，攻击者依然可以通过“4”完成正常跨链，然后在目的链中将资产取走。
 ## WormHole
+* Event details
 
 [https://www.jinse.com/news/blockchain/1178392.html](https://www.jinse.com/news/blockchain/1178392.html)
-
 [https://blog.csdn.net/mutourend/article/details/122807577](https://blog.csdn.net/mutourend/article/details/122807577)
-
 [https://twitter.com/kelvinfichter/status/1489041221947375616](https://twitter.com/kelvinfichter/status/1489041221947375616)
 
-* **事件根本原因**
+* **Event Summary**
     * 合约依赖了外部函数，这个外部函数是调用合约方法时通过参数传入的，合约并没有对该外部函数地址做校验（即校验被调用的方法是否属于系统合约）；
     * 使用了solana被遗弃的接口，在正准备升级的时候被攻击了；
     * 内部合约方法调用好像没有使用权限控制，导致整个流程可以构造假消息后，从中间开始调用；
@@ -89,11 +92,11 @@
 
 ## THORChain
 
-* 假充值（内容整理于[https://www.freebuf.com/articles/blockchain-articles/279120.html](https://www.freebuf.com/articles/blockchain-articles/279120.html)，侵删）
-    * 代码漏洞，
+* 事件详情：假充值（内容整理于[https://www.freebuf.com/articles/blockchain-articles/279120.html](https://www.freebuf.com/articles/blockchain-articles/279120.html)，侵删）
+    * 事件摘要：代码漏洞，
         * 由于错误的定义（对于代币符号的默认值设成了ETH），如果跨链充值的 ERC20 代币符号为 **ETH**，那么将会出现逻辑错误，导致充值的代币被识别为真正的以太币 **ETH**。（该漏洞已经被修复）
-* 非法转账（内容整理于[https://www.tuoniaox.com/news/p-509320.html](https://www.tuoniaox.com/news/p-509320.html)，侵删）
-    * 原因：
+* 事件详情：非法转账（内容整理于[https://www.tuoniaox.com/news/p-509320.html](https://www.tuoniaox.com/news/p-509320.html)，侵删）
+    * **Event Summary**：
         * THORChain Router合约的TransferOut函数的漏洞（没有对账户金额进行判断）；
         * Token合约的接口缺陷；
     * 攻击者之所以可以实现这样的攻击，是因为THORChain Router合约的TransferOut函数漏洞导致--使用asset.call(abi.encodeWithSignature("transfer(address,uint256)" , to, amount))语句进行转账;
@@ -103,4 +106,3 @@
 * **对我们的启发**
     * 虽然在我们的场景中，跨链Token方面的操作在应用层合约中完成（如locker），但权限校验机制需要由底层跨链合约来提供；
     * 跨链协议层的SQOS确实非常重要；
-# 
