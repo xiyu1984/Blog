@@ -14,6 +14,9 @@
 * [A simple mutex mechanism for near](https://github.com/xiyu1984/mutex_near)
 * [NFT can be borrowed](https://github.com/xiyu1984/NFT666)
 
+#### Discord
+* [A discord development framework](https://github.com/xiyu1984/discordbotCook)
+
 #### PlatON
 * WASM Contract Dev
     * [合约开发入门](https://devdocs.platon.network/docs/zh-CN/WASM_Contract_1), 
