@@ -6,6 +6,8 @@
 * [Multi-chain Events](https://github.com/xiyu1984/Blog/blob/main/docs/Multi-Chain%20Events.md)
 
 ### Dev
+#### Polkadot
+* [ink! How to build a *delegator contract*](https://github.com/xiyu1984/Blog/blob/main/docs/ink!%20How%20to%20build%20a%20delegator%20contract.md)
 #### Flow
 * [A multi-signature mechanism on Flow](https://github.com/xiyu1984/CadenceCook/tree/main/project/multi-signature)
 * [Status Callback on Flow](https://github.com/xiyu1984/CadenceCook/tree/main/project/submit-with-auth)
