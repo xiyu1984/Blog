@@ -1,5 +1,13 @@
 # 跨链攻击事件
 
+## Harmony
+* Time: 06-24-2022
+* Event summary
+   Two owner accounts are abused resulting in a loss of about $100 million. The related private keys are suspected to be leaked.
+* Analysis
+   * Harmony bridge authurizes 5 specified off-chain nodes to make the cross-chain transactions, and adopts a 2/5 multi-signature to authorize the permission of assets pool.
+   * It's a centralized way and two of the working nodes leak their private key, or even worse they make collussion to do evil.
+
 ## Ronin
 * Time: 03-23-2022
 * Event details:
