@@ -17,6 +17,8 @@ Nomad bridge has been attacked when they are making an update. The attack happen
 * Analysis
    * Technical principle of Nomad
       * The key Certification: The signature of an `Updater` governed by Nomad. The updater is selected by Nomad itself, and any chain engaged with Nomad trust the updater's signature of the message root(a Merkle tree root constructed by cross-chain messages). The root is composited with messages to be sent as the Merkle leaf on the source chain, and the `Updater` is only signing to let target chains trust the root. So actually, it sacrifices decentralization.
+      * It's easy to prove mistack messages(messages are different between source chain and target chain) on the target chain as `Wacher` can submit the real signed message to a target chain.
+      * But it's very hard to prove messages that are created out of nothing.
    * Reason of the attack:
       * Insecure access control to `process`, which can invoke assets transferring. And abusing of undefined values in Solidity `mapping`:  
 ![1659428386465](https://user-images.githubusercontent.com/83746881/182327510-16d760be-79c2-453d-8c9b-dd40fc5352bc.png)
