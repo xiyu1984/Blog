@@ -51,4 +51,4 @@ Note that the `Rollup` implemented based on zk can be considered as an instance 
 * [zkEVM(zksync)](https://docs.zksync.io/zkevm/): Rollup
 
 ## Reference
-* [Why And How ZkSnark Works](http://petkus.info/papers/WhyAndHowZkSnarkWorks.pdf)
+* [Why And How ZkSnark Works](https://arxiv.org/abs/1906.07221)
