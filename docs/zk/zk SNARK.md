@@ -4,7 +4,7 @@ Multiplicative homomorphic hiding based on bilinear mapping of elliptic curves.<
 
 ![mapping](./image/multiple%20map.png)
 
-$$ e(\alpha \cdot G_1, \beta \cdot G_1) = \alpha\beta \cdot e(G_1, G_1) = \alpha\beta \cdot G_2 $$
+$$ e(\alpha \cdot G_1, \beta \cdot G_1) = \alpha\beta \cdot e(G_1, G_1) = \alpha\beta \cdot G_2 $$  
 $$e(G_1, G_1) = G_2$$
 
 ## Priciple
