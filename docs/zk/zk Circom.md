@@ -26,6 +26,13 @@
 
 ## Operation
 The [official tutorial](https://docs.circom.io/getting-started/installation/) includes the details of the steps to create and execute a user-difined zkp process.  
+* [installation](https://docs.circom.io/getting-started/installation/)
+* [writing-circuits](https://docs.circom.io/getting-started/writing-circuits/)
+* [compiling-circuits](https://docs.circom.io/getting-started/compiling-circuits/)
+* [computing-the-witness](https://docs.circom.io/getting-started/computing-the-witness/)
+* [proving-circuits](https://docs.circom.io/getting-started/proving-circuits/)
 
-Here is a simple [use case](https://github.com/xiyu1984/ZK-Cook/tree/main/simpleZKP).
-
+Here is a simple [use case](https://github.com/xiyu1984/ZK-Cook/tree/main/simpleZKP).  
+Notes:  
+* Remember to check the useful [lib docs](https://docs.circom.io/circom-language/signals/)
+* Once `Setup` is finished, you can change the `inputs` and `public.json` to prove other conditions with the same equality. Just generate new `witness` according to new `inputs`
