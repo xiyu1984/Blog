@@ -30,7 +30,7 @@ Easy for algebraic operations, but hard for logical operations.
 * [Details of zk-SNARK](./zk%20SNARK.md)
 
 ## Engineering
-* [Circom](./zk%20Circom.md): solidity, node.js
+* [Circom](./zk%20Circom.md): solidity
 * [Bellman](https://github.com/zkcrypto/bellman): Rust
 * [zkMove](https://github.com/young-rocks/zkmove): Move
 
