@@ -5,6 +5,9 @@
 ### Multi-chains
 * [Multi-chain Events](https://github.com/xiyu1984/Blog/blob/main/docs/Multi-Chain%20Events.md)
 
+### Algorithm
+* [ZK](./docs/zk/)
+
 ### Dev
 #### Polkadot
 * [ink! How to build a *delegator contract*](https://github.com/xiyu1984/Blog/blob/main/docs/ink!%20How%20to%20build%20a%20delegator%20contract.md)
@@ -18,9 +21,6 @@
 
 #### Discord
 * [A discord development framework](https://github.com/xiyu1984/discordbotCook)
-
-## Algorithm
-* ZK
 
 #### PlatON
 * WASM Contract Dev
