@@ -13,25 +13,32 @@ Let $f(x) = t(x)s(x)$, $t(x)$ is public, we need to prove we know a polynomial w
 
 ### Large prime exponential modulo operation
 Now suppose we have converted the information contained in a real problem into a polynomial in the form of:  
+
 $$ f(x) = c_dx^d + c_{d-1}x^{d-1} + ... + c_1x^1 + c_0 = \sum_{i=0}^{d}c_ix^i $$  
-and this polynomial is dertermined by the parameters: $ \{c_i, i\in \{0, 1, ..., d\}\} $. Simplifying the problem again, let $f(x)$ be factorizable as $f(x) = h(x)t(x)$. In the zero-knowledge proof, $t(x)$ is overt, while the problem is transformed into the following: to prove to B that A knows some information, A only needs to prove to B that it knows a polynomial that can divide $t(x)$ integerly.
+
+and this polynomial is dertermined by the parameters: $\{c_i, i \in \{0, 1, ..., d\}\}$. Simplifying the problem again, let $f(x)$ be factorizable as $f(x) = h(x)t(x)$. In the zero-knowledge proof, $t(x)$ is overt, while the problem is transformed into the following: to prove to B that A knows some information, A only needs to prove to B that it knows a polynomial that can divide $t(x)$ integerly.
 * Steps
 1. (initialization phase) Expressions for large prime numbers $g$, $t(x)$ are disclosed.
-2. (initialization phase) Verifier chooses the random number $x = s$, and the paired random number $α$. The $ g^{s^0}, g^{s^1}, g^{s^2}, ..., g^{s^d} $ is public, and also the corresponding "offset" number $ g^{\alpha s^0}, g^{\alpha s^1}, g^{\alpha s^2}, ..., g^{\alpha s^d} $ , the values of $s$ and $α$ are known only to Verifier.  
+2. (initialization phase) Verifier chooses the random number $x = s$, and the paired random number $α$. The $g^{s^0}, g^{s^1}, g^{s^2}, ..., g^{s^d}$ is public, and also the corresponding "offset" number $g^{\alpha s^0}, g^{\alpha s^1}, g^{\alpha s^2}, ..., g^{\alpha s^d}$ , the values of $s$ and $α$ are known only to Verifier.  
 3. (Prove phase) Prover:  
     a. Based on the expression for f(x), which only he knows, and h(x), calculate: 
+    
     $$\prod_{i=0}^{d}g^{c_{i}s^{i}}=g^{\sum_{i=0}^{d}{c_{i}s^{i}}}=g^{f(s)}$$
+    
     $$\prod_{i=0}^{m}g^{c^{'}_{i}s^{i}}=g^{\sum_{i=0}^{m}{c^{'}_{i}s^{i}}}=g^{h(s)}$$
+    
     b. Calculate:
+    
     $$ \prod_{i=0}^{d}g^{\alpha c_{i}s^{i}}=g^{\sum_{i=0}^{d}{\alpha c_{i}s^{i}}}=g^{\alpha f(s)} $$
+    
     c. Send $g^{f(s)}, g^{h(s)}, g^{\alpha f(s)}$ to the verifier.  
 4. (Verify phase) Verifier:  
-    a. Verify: whether $ (g^{h(s)})^{t(s)} $ is equal to $ g^{f(s)} $, since Verifier has the value of s and can calculate the value of t(s) for the above verification.  
-    b. Verify: whether $ (g^{f(s)})^{\alpha} $ is equal to $ g^{\alpha f(s)} $, which is because Verifier holds the value of alpha.
+    a. Verify: whether $(g^{h(s)})^{t(s)}$ is equal to $g^{f(s)}$, since Verifier has the value of s and can calculate the value of $t(s)$ for the above verification.  
+    b. Verify: whether $(g^{f(s)})^{\alpha}$ is equal to $g^{\alpha f(s)}$, which is because Verifier holds the value of $\alpha$.
 
 * Description
-1. Since the values of s, $\alpha$ are known only to Verifier, Prover can construct out $ g^{f(s)}, g^{h(s)}, g^{\alpha f(s)} $ through $g^{s^{0}}, g^{s^{1}}, g^{s^{2}}, ..., g^{s^{d}}$ and $g^{\alpha s^{0}}, g^{\alpha s^{1}}, g^{\alpha s^{2}}, ..., g^{\alpha s^{d}}$ only if he really knows the expression of $f(x)$.
-2. since Prover only provides the values of the mathematical formulas: $ g^{f(s)}, g^{h(s)}, g^{\alpha f(s)} $, it is difficult for Verifier to obtain the exact expression of $f(x)$ unless it is brute-force cracked through the parameters.
+1. Since the values of s, $\alpha$ are known only to Verifier, Prover can construct out $g^{f(s)}, g^{h(s)}, g^{\alpha f(s)}$ through $g^{s^{0}}, g^{s^{1}}, g^{s^{2}}, ..., g^{s^{d}}$ and $g^{\alpha s^{0}}, g^{\alpha s^{1}}, g^{\alpha s^{2}}, ..., g^{\alpha s^{d}}$ only if he really knows the expression of $f(x)$.
+2. since Prover only provides the values of the mathematical formulas: $g^{f(s)}, g^{h(s)}, g^{\alpha f(s)}$, it is difficult for Verifier to obtain the exact expression of $f(x)$ unless it is brute-force cracked through the parameters.
 3. $t(s)$ is to ensure that A provides a polynomial that can divide $t(x)$, and the $\alpha$ "offset" is to ensure that A is indeed using a polynomial in the computation of the evidence. 
 4. Because the values of $s$ and $α$ cannot be exposed to the Prover, each Verifier needs to generate its own approved values independently when verifying, and each proof and verification requires a separate round of interaction between each Verifier and the Prover.
 
@@ -42,42 +49,47 @@ However, this approach (which is an interactive zero-knowledge proof) suffers fr
 3. Verifier can actually compute the individual coefficients of the polynomial by brute force cracking  (since $α$, $s$ are known to the verifier, and also after all, many practical problems are not translated into many combinations of coefficients of the polynomial).  
 
 ### Elliptic curve
-To completely hide the values of $α$ and $s$ above, the process of zero-knowledge proof requires the multiplicative homomorphism hiding mentioned above, i.e., the mapping (i.e., bilinear mapping) method mentioned [above](#prepare). With such a "magic tool", the design idea of zero-knowledge proof can be evolved into the following form (we adopt a more standardized logo for the following expression, i.e., $ g^{\alpha} $ represents the elliptic curve with $g$ as the base point hitting alpha times, $ e(g^{\alpha},g^{\beta}) $ represents "mapping").  
+To completely hide the values of $α$ and $s$ above, the process of zero-knowledge proof requires the multiplicative homomorphism hiding mentioned above, i.e., the mapping (i.e., bilinear mapping) method mentioned [above](#prepare). With such a "magic tool", the design idea of zero-knowledge proof can be evolved into the following form (we adopt a more standardized logo for the following expression, i.e., $g^{\alpha}$ represents the elliptic curve with $g$ as the base point hitting alpha times, $e(g^{\alpha},g^{\beta})$ represents "mapping").  
 * Steps:
 1. Suppose $s$ and $\alpha$ is unkown to everyone, and Provers and Verifiers only know the following CRS(Common Reference String). (I will show you how to get it without knowing the concrete $s$ and $\alpha$). The `CRS` is:  
-    a. Prover key: $ (g_{1}^{s^{i}}, g_{1}^{\alpha s^{i}}) $  
-    b. Verifier key: $ (g_{1}^{t(s)}, g_{1}^{\alpha}) $  
+    a. Prover key: $(g_{1}^{s^{i}}, g_{1}^{\alpha s^{i}})$  
+    b. Verifier key: $(g_{1}^{t(s)}, g_{1}^{\alpha})$  
     c. $g_1$ is the base point in elliptic curve $E_1$      
 2. Prover:  
     a. Calculate 
-    $$ g_{1}^{\sum_{i=0}^{d}{c_{i}s^{i}}} = g_{1}^{f(s)}=p $$ 
+    
+    $$ g_{1}^{\sum_{i=0}^{d}{c_{i}s^{i}}} = g_{1}^{f(s)}=p $$
+    
     $$ g_{1}^{\sum_{i=0}^{m}{c_{i}^{'}s^{i}}} = g_{1}^{h( s)}=h $$
-    according to he point $ g_{1}^{s^{i}} $ on the elliptic curve $E_1$  
+    
+    according to he point $g_{1}^{s^{i}}$ on the elliptic curve $E_1$  
     b. Calculate 
-    $$ g_{1}^{\sum_{i=0}^{d}{c_{i}\alpha s^{i}}}=g_{1}^{\alpha f(s)}=p^{'} $$  
-    according to the point $ g_{1}^{\alpha s^{i}} $ on the elliptic curve $E_1$  
+    
+    $$ g_{1}^{\sum_{i=0}^{d}{c_{i}\alpha s^{i}}}=g_{1}^{\alpha f(s)}=p^{'} $$
+    
+    according to the point $g_{1}^{\alpha s^{i}}$ on the elliptic curve $E_1$  
     c. Expose the points $p, h, p'$ on $E_1$.
 3. Verifier:  
-    a. Verify that the point $ e(g_{1}^{t(s)}, g_{1}^{h}) $ on elliptic curve $E_2$ is equal to point $e(g_{1}^{f(s)}, g_{1})$ on $E_2$ according to points $g_{1}^{t(s)}, g_{1}^{h(s)}=h, g_{1}^{f(s)}=p$ on $E_1$  
+    a. Verify that the point $e(g_{1}^{t(s)}, g_{1}^{h})$ on elliptic curve $E_2$ is equal to point $e(g_{1}^{f(s)}, g_{1})$ on $E_2$ according to points $g_{1}^{t(s)}, g_{1}^{h(s)}=h, g_{1}^{f(s)}=p$ on $E_1$  
     b. Verify that the point $e(g_{1}^{f(s)}, g_{1}^{\alpha})$ on $E_2$ is equal to the point $e(g_{1}^{\alpha f(s)}, g_{1})$ on $E_2$ according to points $g_{1}^{f(s)}=p, g_{1}^{\alpha}, g_{1}^{\alpha f(s)}=p^{'}$ on $E_1$  
 
-However, the CRS parameters need to be generated and disclosed in a trusted way, and the traditional approach requires a trusted "third party", which poses the risk of centralization. We will explain in the [next section](#generate-crs-in-a-decentralized-manner) a typical solution to avoid centralization. With these parameters, the prover provides the points $ p, h, p^{'} $ on the elliptic curve $E_1$ and the verifier can complete the verification, and the `CRS` need to be disclosed only once, which is the reason why this approach is called non-interactive.  
+However, the CRS parameters need to be generated and disclosed in a trusted way, and the traditional approach requires a trusted "third party", which poses the risk of centralization. We will explain in the [next section](#generate-crs-in-a-decentralized-manner) a typical solution to avoid centralization. With these parameters, the prover provides the points $p, h, p^{'}$ on the elliptic curve $E_1$ and the verifier can complete the verification, and the `CRS` need to be disclosed only once, which is the reason why this approach is called non-interactive.  
 
 ### Generate CRS in a decentralized manner
 `CRS` can be generated in a decentralized manner.  
 
 In simple terms, the values of $s, α$ are generated by multiple participants, but each person does not know what the "part" of the others is, for example, suppose there are three participants, A, B and C:
-1. Participant `A` Compute and publish the CRS values: $ (g_{1}^{s_{A}^{i}}, g_{1}^{\alpha_{A}}, g_{1}^{\alpha_{A} s_{A}^{i}}) $;
-2. Participant `B` compute and publish on the basis of A: $ (g_{1}^{s_{A}^{i}s_{B}^{i}}, g_{1}^{\alpha_{A}\alpha_{B}}, g_{1}^{\alpha_{A} s_{A}^{i}s_{B}^{i}}) $.
-3. Participant `C` Compute and publish on the basis of B: $ (g_{1}^{s_{A}^{i}s_{B}^{i}s_{C}^{i}}, g_{1}^{\alpha_{A}\alpha_{B}\alpha_{C}}, g_{1}^{\alpha_{A} s_{A}^{i}s_{B}^{i}s_{C} ^{i}}) $.  
+1. Participant `A` Compute and publish the CRS values: $(g_{1}^{s_{A}^{i}}, g_{1}^{\alpha_{A}}, g_{1}^{\alpha_{A} s_{A}^{i}})$;
+2. Participant `B` compute and publish on the basis of A: $(g_{1}^{s_{A}^{i}s_{B}^{i}}, g_{1}^{\alpha_{A}\alpha_{B}}, g_{1}^{\alpha_{A} s_{A}^{i}s_{B}^{i}})$.
+3. Participant `C` Compute and publish on the basis of B: $(g_{1}^{s_{A}^{i}s_{B}^{i}s_{C}^{i}}, g_{1}^{\alpha_{A}\alpha_{B}\alpha_{C}}, g_{1}^{\alpha_{A} s_{A}^{i}s_{B}^{i}s_{C} ^{i}})$.  
 
-The final value published by `C` serves as the public `CRS`. Since `A`, `B`, and `C` all publish only values of the form $ g^{s^{i}} $, the $s, α$ values generated by each participant are agnostic to everyone else.   
+The final value published by `C` serves as the public `CRS`. Since `A`, `B`, and `C` all publish only values of the form $g^{s^{i}}$, the $s, α$ values generated by each participant are agnostic to everyone else.   
 But in this model, it is also the agnosticism of $s, α$ that leads to a problem, that the last participant can ignore the data provided by all the previous participants and provide the `CRS` only by himself. therefore, a validation mechanism is needed to guarantee that the `CRS` made public by each participant (except the first one), is calculated based on the results of the previous ones. In fact, the validation mechanism is relatively simple, and only requires that others, except the first one, disclose some information about themselves on top of the published `CRS`, e.g.
-1. Participant `A` Compute and publish the CRS values: $ (g_{1}^{s_{A}^{i}}, g_{1}^{\alpha_{A}}, g_{1}^{\alpha_{A} s_{A}^{i}}) $
-2. Participant `B` compute and publish on the basis of A: $ (g_{1}^{s_{A}^{i}s_{B}^{i}}, g_{1}^{\alpha_{A}\alpha_{B}}, g_{1}^{\alpha_{A} s_{A}^{i}s_{B}^{i}}) $ and $(g_{1}^{s_{B}^{i}}, g_{1}^{\alpha_{B}}, g_{1}^{\alpha_{B} s_{B}^{i}})$
-3. Participant `C` Compute and publish on the basis of B: $ (g_{1}^{s_{A}^{i}s_{B}^{i}s_{C}^{i}}, g_{1}^{\alpha_{A}\alpha_{B}\alpha_{C}}, g_{1}^{\alpha_{A} s_{A}^{i}s_{B}^{i}s_{C} ^{i}}) $ and $ (g_{1}^{s_{C}^{i}}, g_{1}^{\alpha_{C}}, g_{1}^{\alpha_{C} s_{C}^{i}}) $   
+1. Participant `A` Compute and publish the CRS values: $(g_{1}^{s_{A}^{i}}, g_{1}^{\alpha_{A}}, g_{1}^{\alpha_{A} s_{A}^{i}})$
+2. Participant `B` compute and publish on the basis of A: $(g_{1}^{s_{A}^{i}s_{B}^{i}}, g_{1}^{\alpha_{A}\alpha_{B}}, g_{1}^{\alpha_{A} s_{A}^{i}s_{B}^{i}})$ and $(g_{1}^{s_{B}^{i}}, g_{1}^{\alpha_{B}}, g_{1}^{\alpha_{B} s_{B}^{i}})$
+3. Participant `C` Compute and publish on the basis of B: $(g_{1}^{s_{A}^{i}s_{B}^{i}s_{C}^{i}}, g_{1}^{\alpha_{A}\alpha_{B}\alpha_{C}}, g_{1}^{\alpha_{A} s_{A}^{i}s_{B}^{i}s_{C} ^{i}})$ and $(g_{1}^{s_{C}^{i}}, g_{1}^{\alpha_{C}}, g_{1}^{\alpha_{C} s_{C}^{i}})$   
 
-For example, for a message posted by B, we can confirm that $ g_{1}^{s_{A}^{i}s_{B}^{i}} $ is based on the information posted by `A` through verifying that $ e(g_{1}^{s_{A}^{i}}, g_{1}^{s_{B}^{i}}) $ is equal to $ e(g_{1}^{s_{A}^{i}s_{B}^{i}}, g_{1}) $. The other two are similar.  
+For example, for a message posted by B, we can confirm that $g_{1}^{s_{A}^{i}s_{B}^{i}}$ is based on the information posted by `A` through verifying that $e(g_{1}^{s_{A}^{i}}, g_{1}^{s_{B}^{i}})$ is equal to $e(g_{1}^{s_{A}^{i}s_{B}^{i}}, g_{1})$. The other two are similar.  
 
 ## Example
 A non-interactive ZK (NIZK) proof system includes algorithms $(Setup_{nizk}, Prove, Verify_{nizk})$, where $Setup_{nizk}$ outputs some public parameters, $Prove$ generates a proof for a statement given a witness, and $Verify_{nizk}$ checks if the proof is valid w.r.t the statement.  
