@@ -8,6 +8,8 @@ $$ e(\alpha \cdot G_1, \beta \cdot G_1) = \alpha\beta \cdot e(G_1, G_1) = \alpha
 $$e(G_1, G_1) = G_2$$
 
 ## Priciple
+Let $f(x) = t(x)s(x)$, $t(x)$ is public, we need to prove we know a polynomial which can devide exactly $t(x)$.
+
 ### Large prime exponential modulo operation
 Now suppose we have converted the information contained in a real problem into a polynomial in the form of:  
 $$ f(x) = c_dx^d + c_{d-1}x^{d-1} + ... + c_1x^1 + c_0 = \sum_{i=0}^{d}c_ix^i $$  
@@ -75,3 +77,16 @@ But in this model, it is also the agnosticism of $s, α$ that leads to a problem
 3. Participant `C` Compute and publish on the basis of B: $ (g_{1}^{s_{A}^{i}s_{B}^{i}s_{C}^{i}}, g_{1}^{\alpha_{A}\alpha_{B}\alpha_{C}}, g_{1}^{\alpha_{A} s_{A}^{i}s_{B}^{i}s_{C} ^{i}}) $ and $ (g_{1}^{s_{C}^{i}}, g_{1}^{\alpha_{C}}, g_{1}^{\alpha_{C} s_{C}^{i}}) $   
 
 For example, for a message posted by B, we can confirm that $ g_{1}^{s_{A}^{i}s_{B}^{i}} $ is based on the information posted by `A` through verifying that $ e(g_{1}^{s_{A}^{i}}, g_{1}^{s_{B}^{i}}) $ is equal to $ e(g_{1}^{s_{A}^{i}s_{B}^{i}}, g_{1}) $. The other two are similar.  
+
+## Example
+A non-interactive ZK (NIZK) proof system includes algorithms $(Setup_{nizk}, Prove, Verify_{nizk})$, where $Setup_{nizk}$ outputs some public parameters, $Prove$ generates a proof for a statement given a witness, and $Verify_{nizk}$ checks if the proof is valid w.r.t the statement.  
+Some features are a) correct, an honest prover can produce a valid proof; b) zero-knowledge, a verifier learns nothing from the proof but the validity of the statement, and c) sound, a computationally bounded prover cannot convince a verifier of a false statement. 
+`Σ protocols`, which is used in [zether](https://crypto.stanford.edu/~buenz/papers/zether.pdf), with the Fiat-Shamir transform applied, have all these properties. 
+
+## Reference
+* [1] P.S.L.M. Barreto, H.Y. Kim, B.Lynn, and M.Scott, Efficient algorithms for
+pairing-based cryptosystems, Crypto 2002, LNCS 2442, pp.354-368, SpringerVerlag, 2002.
+* [2] D. Boneh, B. Lynn, and H. Shacham, Short signatures from the Weil pairing,
+Asiacrypt 2001, LNCS 2248, pp.514-532, Springer-Verlag, 2001.
+* [3] S. D. Galbraith, K. Harrison, and D. Soldera, Implementing the Tate pairing,
+ANTS 2002, LNCS 2369, pp.324-337, Springer-Verlag, 2002.
