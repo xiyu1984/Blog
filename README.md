@@ -6,7 +6,7 @@
 * [Multi-chain Events](https://github.com/xiyu1984/Blog/blob/main/docs/Multi-Chain%20Events.md)
 
 ### Algorithm
-* [ZK](./docs/zk/)
+* [ZK series](./docs/zk/)
 
 ### Dev
 #### Polkadot
