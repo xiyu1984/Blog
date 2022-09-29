@@ -1,9 +1,11 @@
 # Series ZK - Introduction
 
 ## Principle
-Transform normal problems into a polynomial problems.    
-* zk-SNARK: Convert the problem of proving that a CI statement holds into a problem of proving that a polynomial **equation** holds.
-* zk-STARK: Converts the problem of proving that a CI statement holds into a problem of proving that a polynomial is **less than** a certain degree.
+* Transform normal problems into a polynomial problems.    
+    * zk-SNARK: Convert the problem of proving that a CI statement holds into a problem of proving that a polynomial **equation** holds.
+    * zk-STARK: Converts the problem of proving that a CI statement holds into a problem of proving that a polynomial is **less than** a certain degree.
+* Transfor normal problems into a set problems.
+    * $\sum$-Bullets: range proofs, settings, etc.
 
 ### Statement
 * A standard ZK-proof for the statement:  
