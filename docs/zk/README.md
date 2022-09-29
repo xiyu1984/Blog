@@ -51,6 +51,7 @@ Note that the `Rollup` implemented based on zk can be considered as an instance 
 * [StarkNet(StarkWare)](https://starkware.co/starknet/): Rollup
 * [Aleo](https://www.aleo.org/): Privacy
 * [zkEVM(zksync)](https://docs.zksync.io/zkevm/): Rollup
+* [Zether](https://crypto.stanford.edu/~buenz/papers/zether.pdf): Smart contract based privacy trading 
 
 ## Reference
 * [Why And How ZkSnark Works](https://arxiv.org/abs/1906.07221)
