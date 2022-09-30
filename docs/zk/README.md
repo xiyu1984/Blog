@@ -7,7 +7,7 @@ ZK is solving a problem of proving, not calculation.
     * zk-SNARK: Convert the problem of proving that a CI statement holds into a problem of proving that a polynomial **equation** holds.
     * zk-STARK: Converts the problem of proving that a CI statement holds into a problem of proving that a polynomial is **less than** a certain degree.
 * Transfor normal problems into a set problems.
-    * $\sum$-Bullets: range proofs, settings, etc.
+    * Bulletproofs: range proofs, settings, etc.
 
 ### Statement
 * A standard ZK-proof for the statement:  
@@ -32,6 +32,9 @@ Easy for algebraic operations, but hard for logical operations.
     * Quantum resistant: STARK
 * [Details of zk-SNARK](./zk%20SNARK.md)
 * [Details of zk-STARK](./zk%20STARK.md)
+
+[Bulletproofs](https://crypto.stanford.edu/bulletproofs/) is used in some cases:
+* $\sum$-[Bullets](https://crypto.stanford.edu/~buenz/papers/zether.pdf)
 
 ## Engineering
 * [Circom](./zk%20Circom.md): solidity
