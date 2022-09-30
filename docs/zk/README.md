@@ -11,7 +11,7 @@ ZK is solving a problem of proving, not calculation.
 
 ### Statement
 * A standard ZK-proof for the statement:  
-$$st: \{(a, b, c, ...; x, y, z, ...) : f(a, b, c, ...; x, y, z, ...)\}$$    
+$$st:\\{(a, b, c, ...; x, y, z, ...) : f(a, b, c, ...; x, y, z, ...)\\}$$    
     means that the prover shows knowledge of x, y, z, . . . such that f(a, b, c, . . . , x, y, z, . . .) is true, where a, b, c, . . . are public variables. We use st[a, b, c, . . .] to denote an instance of st where the variables a, b, c, . . . have some fixed values.
 * [Example](https://crypto.stanford.edu/~buenz/papers/zether.pdf)  
 ![example of statement](./image/example%20statement.png)
