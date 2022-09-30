@@ -1,6 +1,8 @@
 # Series ZK - Introduction
 
 ## Principle
+ZK is solving a problem of proving, not calculation.
+
 * Transform normal problems into a polynomial problems.    
     * zk-SNARK: Convert the problem of proving that a CI statement holds into a problem of proving that a polynomial **equation** holds.
     * zk-STARK: Converts the problem of proving that a CI statement holds into a problem of proving that a polynomial is **less than** a certain degree.
