@@ -58,20 +58,22 @@ To completely hide the values of $α$ and $s$ above and make it `Non-Interactivi
 2. Prover:  
     a. Calculate 
     
-    $$ g_{1}^{\sum_{i=0}^{d}{c_{i}s^{i}}} = g_{1}^{f(s)}=p $$
+    $$ g_{1}^{\sum_{i=0}^{d}{c_{i}s^{i}}} = g_{1}^{f(s)} $$
     
-    $$ g_{1}^{\sum_{i=0}^{m}{c_{i}^{'}s^{i}}} = g_{1}^{h( s)}=h $$
+    $$ g_{1}^{\sum_{i=0}^{m}{c_{i}^{'}s^{i}}} = g_{1}^{h( s)} $$
     
     according to he point $g_{1}^{s^{i}}$ on the elliptic curve $E_1$  
     b. Calculate 
     
-    $$ g_{1}^{\sum_{i=0}^{d}{c_{i}\alpha s^{i}}}=g_{1}^{\alpha f(s)}=p^{'} $$
+    $$ g_{1}^{\sum_{i=0}^{d}{c_{i}\alpha s^{i}}}=g_{1}^{\alpha f(s)} $$
     
     according to the point $g_{1}^{\alpha s^{i}}$ on the elliptic curve $E_1$  
-    c. Expose the points $p, h, p'$ on $E_1$.
+    c. sampling $\delta$ and calculate a proof:  
+$$\pi = (g_1^{\delta f(s)}, g_1^{\delta h(s)}, g_1^{\delta \alpha f(s)})$$
+
 3. Verifier:  
-    a. Verify that the point $e(g_{1}^{t(s)}, g_{1}^{h})$ on elliptic curve $E_2$ is equal to point $e(g_{1}^{f(s)}, g_{1})$ on $E_2$ according to points $g_{1}^{t(s)}, g_{1}^{h(s)}=h, g_{1}^{f(s)}=p$ on $E_1$  
-    b. Verify that the point $e(g_{1}^{f(s)}, g_{1}^{\alpha})$ on $E_2$ is equal to the point $e(g_{1}^{\alpha f(s)}, g_{1})$ on $E_2$ according to points $g_{1}^{f(s)}=p, g_{1}^{\alpha}, g_{1}^{\alpha f(s)}=p^{'}$ on $E_1$  
+    a. Verify that the point $e(g_{1}^{t(s)}, g_{1}^{\delta h(s)})$ on elliptic curve $E_2$ is equal to point $e(g_{1}^{\delta f(s)}, g_{1})$ on $E_2$ according to points $g_{1}^{t(s)}, g_{1}^{\delta h(s)}, g_{1}^{\delta f(s)}$ on $E_1$  
+    b. Verify that the point $e(g_{1}^{\delta f(s)}, g_{1}^{\alpha})$ on $E_2$ is equal to the point $e(g_{1}^{\delta \alpha f(s)}, g_{1})$ on $E_2$ according to points $g_{1}^{\delta f(s)}, g_{1}^{\alpha}, g_{1}^{\delta \alpha f(s)}$ on $E_1$  
 
 However, the CRS parameters need to be generated and disclosed in a trusted way, and the traditional approach requires a trusted "third party", which poses the risk of centralization. We will explain in the [next section](#generate-crs-in-a-decentralized-manner) a typical solution to avoid centralization. With these parameters, the prover provides the points $p, h, p^{'}$ on the elliptic curve $E_1$ and the verifier can complete the verification, and the `CRS` need to be disclosed only once, which is the reason why this approach is called non-interactive.  
 
