@@ -19,26 +19,26 @@ $$ f(x) = c_dx^d + c_{d-1}x^{d-1} + ... + c_1x^1 + c_0 = \sum_{i=0}^{d}c_ix^i $$
 and this polynomial is dertermined by the parameters: $\{c_i, i \in \{0, 1, ..., d\}\}$. Simplifying the problem again, let $f(x)$ be factorizable as $f(x) = h(x)t(x)$. In the zero-knowledge proof, $t(x)$ is overt, while the problem is transformed into the following: to prove to B that A knows some information, A only needs to prove to B that it knows a polynomial that can divide $t(x)$ integerly.
 * Steps
 1. (initialization phase) Expressions for large prime numbers $g$, $t(x)$ are disclosed.
-2. (initialization phase) Verifier chooses the random number $x = s$, and the paired random number $α$. The $g^{s^0}, g^{s^1}, g^{s^2}, ..., g^{s^d}$ is public, and also the corresponding "offset" number $g^{\alpha s^0}, g^{\alpha s^1}, g^{\alpha s^2}, ..., g^{\alpha s^d}$ , the values of $s$ and $α$ are known only to Verifier.  
+2. (initialization phase) Verifier chooses the random number $x = s$, and the paired random number $α$. The $g^{s^0}, g^{s^1}, g^{s^2}, ..., g^{s^d}$ is public, and also the corresponding "offset" number $g^{\alpha s^0}, g^{\alpha s^1}, g^{\alpha s^2}, ..., g^{\alpha s^d}$ , the values of **$s$ and $α$ are known only to Verifier**.  
 3. (Prove phase) Prover:  
-    a. Based on the expression for f(x), which only he knows, and h(x), calculate: 
+    a. Generate a random $\delta $ that only the prover knows. Based on the expression for f(x), which only he knows, and h(x), calculate: 
     
-    $$\prod_{i=0}^{d}g^{c_{i}s^{i}}=g^{\sum_{i=0}^{d}{c_{i}s^{i}}}=g^{f(s)}$$
+    $$(\prod_{i=0}^{d}g^{c_{i}s^{i}})^{^\delta }=(g^{\sum_{i=0}^{d}{c_{i}s^{i}}})^{^\delta }=g^{\delta f(s)}$$
     
-    $$\prod_{i=0}^{m}g^{c^{'}_{i}s^{i}}=g^{\sum_{i=0}^{m}{c^{'}_{i}s^{i}}}=g^{h(s)}$$
+    $$(\prod_{i=0}^{m}g^{c^{'}_{i}s^{i}})^{\delta }=(g^{\sum_{i=0}^{m}{c^{'}_{i}s^{i}}})^{\delta }=g^{\delta h(s)}$$
     
     b. Calculate:
     
-    $$ \prod_{i=0}^{d}g^{\alpha c_{i}s^{i}}=g^{\sum_{i=0}^{d}{\alpha c_{i}s^{i}}}=g^{\alpha f(s)} $$
+    $$ (\prod_{i=0}^{d}(g^{\alpha s^{i}})^{c_{i}})^{\delta }=(g^{\sum_{i=0}^{d}{\alpha c_{i}s^{i}}})^{\delta }=g^{\delta \alpha f(s)} $$
     
-    c. Send $g^{f(s)}, g^{h(s)}, g^{\alpha f(s)}$ to the verifier.  
+    c. Send $g^{\delta f(s)}, g^{\delta h(s)}, g^{\delta \alpha f(s)}$ to the verifier.  
 4. (Verify phase) Verifier:  
-    a. Verify: whether $(g^{h(s)})^{t(s)}$ is equal to $g^{f(s)}$, since Verifier has the value of s and can calculate the value of $t(s)$ for the above verification.  
-    b. Verify: whether $(g^{f(s)})^{\alpha}$ is equal to $g^{\alpha f(s)}$, which is because Verifier holds the value of $\alpha$.
+    a. Verify: whether $(g^{\delta h(s)})^{t(s)}$ is equal to $g^{\delta f(s)}$, since Verifier has the value of s and can calculate the value of $t(s)$ for the above verification.  
+    b. Verify: whether $(g^{\delta f(s)})^{\alpha}$ is equal to $g^{\delta \alpha f(s)}$, which is because Verifier holds the value of $\alpha$.
 
 * Description
-1. Since the values of s, $\alpha$ are known only to Verifier, Prover can construct out $g^{f(s)}, g^{h(s)}, g^{\alpha f(s)}$ through $g^{s^{0}}, g^{s^{1}}, g^{s^{2}}, ..., g^{s^{d}}$ and $g^{\alpha s^{0}}, g^{\alpha s^{1}}, g^{\alpha s^{2}}, ..., g^{\alpha s^{d}}$ only if he really knows the expression of $f(x)$.
-2. since Prover only provides the values of the mathematical formulas: $g^{f(s)}, g^{h(s)}, g^{\alpha f(s)}$, it is difficult for Verifier to obtain the exact expression of $f(x)$ unless it is brute-force cracked through the parameters.
+1. Since the values of **s, $\alpha$ are known only to Verifier**, Prover can construct out $g^{\delta f(s)}, g^{\delta h(s)}, g^{\delta \alpha f(s)}$ through $g^{s^{0}}, g^{s^{1}}, g^{s^{2}}, ..., g^{s^{d}}$ and $g^{\alpha s^{0}}, g^{\alpha s^{1}}, g^{\alpha s^{2}}, ..., g^{\alpha s^{d}}$ only if he really knows the expression of $f(x)$.
+2. If a prover provides the values of the mathematical formulas: $g^{f(s)}, g^{h(s)}, g^{\alpha f(s)}$, The verifier may the verifier could brute-force limited range of coefficients combinations until the result is equal to the prover’s answer and get the expression of $h(x)$. **$\delta$ makes the brute-force cracking impossible**.  
 3. $t(s)$ is to ensure that A provides a polynomial that can divide $t(x)$, and the $\alpha$ "offset" is to ensure that A is indeed using a polynomial in the computation of the evidence. 
 4. Because the values of $s$ and $α$ cannot be exposed to the Prover, each Verifier needs to generate its own approved values independently when verifying, and each proof and verification requires a separate round of interaction between each Verifier and the Prover.
 
@@ -46,10 +46,10 @@ and this polynomial is dertermined by the parameters: $\{c_i, i \in \{0, 1, ...,
 However, this approach (which is an interactive zero-knowledge proof) suffers from the following problems.
 1.  Since multiplicative homomorphism hiding is not supported, the values of $α$ as well as $t(s)$ are required to be kept by the verifier at all times, which then creates the possibility of attacks on the verifier to obtain $α$, $t(s)$ in order to falsify the proof.
 2. Verifier and Prover can collude to falsify proofs.
-3. Verifier can actually compute the individual coefficients of the polynomial by brute force cracking  (since $α$, $s$ are known to the verifier, and also after all, many practical problems are not translated into many combinations of coefficients of the polynomial).  
+3. As $α$, $t(s)$ is only known to one verifier, so a prover needs to interact with each verifier to make a proof. **It is `not Non-Interactivity` at this stage**.
 
 ### Elliptic curve
-To completely hide the values of $α$ and $s$ above, the process of zero-knowledge proof requires the multiplicative homomorphism hiding mentioned above, i.e., the mapping (i.e., bilinear mapping) method mentioned [above](#prepare). With such a "magic tool", the design idea of zero-knowledge proof can be evolved into the following form (we adopt a more standardized logo for the following expression, i.e., $g^{\alpha}$ represents the elliptic curve with $g$ as the base point hitting alpha times, $e(g^{\alpha},g^{\beta})$ represents "mapping").  
+To completely hide the values of $α$ and $s$ above and make it `Non-Interactivity`, the process of zero-knowledge proof requires the multiplicative homomorphism hiding mentioned above, i.e., the mapping (i.e., bilinear mapping) method mentioned [above](#prepare). With such a "magic tool", the design idea of zero-knowledge proof can be evolved into the following form (we adopt a more standardized logo for the following expression, i.e., $g^{\alpha}$ represents the elliptic curve with $g$ as the base point hitting alpha times, $e(g^{\alpha},g^{\beta})$ represents "mapping").  
 * Steps:
 1. Suppose $s$ and $\alpha$ is unkown to everyone, and Provers and Verifiers only know the following CRS(Common Reference String). (I will show you how to get it without knowing the concrete $s$ and $\alpha$). The `CRS` is:  
     a. Prover key: $(g_{1}^{s^{i}}, g_{1}^{\alpha s^{i}})$  
