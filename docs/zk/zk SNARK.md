@@ -1,5 +1,7 @@
 # zk-SNARK
 ## Prepare
+Operation addition and scalar multiplication on an elliptic can be found [here](./Elliptic.md).  
+
 Multiplicative homomorphic hiding based on bilinear mapping of elliptic curves.<sup>[1]</sup><sup>[2]</sup><sup>[3]</sup>
 
 ![mapping](./image/multiple%20map.png)
