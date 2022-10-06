@@ -62,11 +62,13 @@ This [article](https://andrea.corbellini.name/2015/05/23/elliptic-curve-cryptogr
 Actually, the calculation in finite fields is quite similiar. 
 ### Addition
 We have:  
-$$\begin{align*}
+$$
+\begin{align*}
   x_R & = (m^2 - x_P - x_Q) \bmod{p} \\
   y_R & = [y_P + m(x_R - x_P)] \bmod{p} \\
       & = [y_Q + m(x_R - x_Q)] \bmod{p}
-\end{align*}$$  
+\end{align*}
+$$  
 In case $P\neq Q$:  
 $$m = (y_P - y_Q)(x_P - x_Q)^{-1} \bmod{p}$$  
 In case $P == Q$:  
