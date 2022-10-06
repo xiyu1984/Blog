@@ -11,12 +11,12 @@ where $4a^3+27b^2\neq 0$, or there might be singularity on a curve. The equation
 
 #### Addition
 The principle of the addition operation defined on elliptic curves, can be intuitively understood as "shotting", is illustrated as follows (it will be computed by taking the modulus and transforming it into a finite field; here, for intuitive understanding, it is sufficient to consider only the operation on real curves):  
-![addition](./image/addition.png)  
+![addition](https://user-images.githubusercontent.com/83746881/194217478-560d6bf3-c80d-4cd4-a478-221bf21de23f.png)  
 The elliptic curve addition operation defines the "sum" of three points on the curve as 0 if they are on a line, i.e., in the figure above, $A+B+C'=0$. A point symmetric to the x-axis is its "negative" point, i.e., the point symmetric to $B$ on the x-axis in the figure above is $-B$. Since the elliptic curve is symmetric about the x-axis, each point on the curve corresponds to a "negative" point on the curve, e.g., -C'=C in the figure above.
 
 #### Scalar Multiplication 
 We explained the operation $A+B$ above, and an arbitrary scalar multiplication starts from that $A$ and $B$ is at the same point. In this case, it is actually the tangent line through A.  
-![scalar muiltiplication](./image/scalar%20multiplication.png)  
+![scalar multiplication](https://user-images.githubusercontent.com/83746881/194217502-fcbd418a-5634-42a8-9e0a-070fc1271c5a.png)  
 The example in the picture above is how to calculate $4\cdot a$. We can add 4 times as above picture shows. And more efficiently, we can calculate $a+a$ to get $2a$ and then calculate $2a + 2a$ to get $4a$.
 
 ### Example
