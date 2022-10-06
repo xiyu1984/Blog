@@ -46,13 +46,31 @@ $$m = \frac{3 x_P^2 + a}{2 y_P}$$
 and the rest parts are the same.   
 
 ### Scalar Multiplication
-
+Scalar multiplication can be treated as continuous addition operations,   
+$$nP = \underbrace{P + P + \cdots + P}_{n\ \text{times}}$$  
+but there is more efficient ways, the core point of which is expressing n as binary:  
+$$n=\underbrace{2^{k-1}\cdot i_{k-1}+2^{k-2}\cdot{i_{k-2}}+2^{k-3}\cdot{i_{k-3}}+...+2^{1}\cdot{i_{1}}+2^{0}\cdot{i_{0}}}_{k\ \text{times}}$$  
+where  
+$$i_{l}=0\ \text{or}\ 1,\ l\in \{0, 1, ..., k-1,k\}$$  
+So $nP$ can be expressed as:  
+$$nP=\underbrace{2^{k-1}\cdot i_{k-1}P+2^{k-2}\cdot{i_{k-2}}P+2^{k-3}\cdot{i_{k-3}}P+...+2^{1}\cdot{i_{1}}P+2^{0}\cdot{i_{0}}P}_{k\ \text{times}}$$  
+$P, 2\cdot P, 4\cdot P, ..., 2^{k}\cdot P$ can be calculated one by one. 
 
 ### Finite Fields
 This [article](https://andrea.corbellini.name/2015/05/23/elliptic-curve-cryptography-finite-fields-and-discrete-logarithms/) provides how basic operations(addition and scalar multiplication) on an elliptic work in **finite fields** in detail.  
 
-
+Actually, the calculation in finite fields is quite similiar. 
 ### Addition
-
+We have:  
+$$\begin{align*}
+  x_R & = (m^2 - x_P - x_Q) \bmod{p} \\
+  y_R & = [y_P + m(x_R - x_P)] \bmod{p} \\
+      & = [y_Q + m(x_R - x_Q)] \bmod{p}
+\end{align*}$$  
+In case $P\neq Q$:  
+$$m = (y_P - y_Q)(x_P - x_Q)^{-1} \bmod{p}$$  
+In case $P == Q$:  
+$$m = (3 x_P^2 + a)(2 y_P)^{-1} \bmod{p}$$  
 
 ### Scalar Multiplication
+Almost the same as algebraic except that calculation is based on `mode` operation.
