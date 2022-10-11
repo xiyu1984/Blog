@@ -1,5 +1,6 @@
 # The Attack Vector for Multi-Chain interoperation
 ## **Index**
+* [BNB](#bnb)
 * [Nomad](#nomad)
 * [Harmony](#harmony)
 * [Anyswap](#anyswap)
@@ -9,6 +10,16 @@
 * [THORChain](#thorchain)
 * [Wormhole](#wormhole)
 
+
+## BNB
+
+* Analysis
+  * [root := op.Proof.ComputeRootHash()](https://github.com/bnb-chain/bsc/blob/46d185b4cfed54436f526b24c47b15ed58a5e1bb/core/vm/lightclient/multistoreproof.go#L112)
+  * [ComputeRootHash](https://github.com/bnb-chain/bsc/blob/46d185b4cfed54436f526b24c47b15ed58a5e1bb/core/vm/lightclient/multistoreproof.go#L22)
+  * [Hash](https://github.com/bnb-chain/bsc/blob/46d185b4cfed54436f526b24c47b15ed58a5e1bb/core/vm/lightclient/rootmultistore.go#L41)
+  * [return merkle.SimpleHashFromMap(m)](https://github.com/bnb-chain/bsc/blob/46d185b4cfed54436f526b24c47b15ed58a5e1bb/core/vm/lightclient/rootmultistore.go#L47). The related import ["github.com/tendermint/tendermint/crypto/merkle"](https://github.com/bnb-chain/bsc/blob/46d185b4cfed54436f526b24c47b15ed58a5e1bb/core/vm/lightclient/rootmultistore.go#L6) is not available. Instead, we can found it [here](https://pkg.go.dev/github.com/bluele/tendermint/crypto/merkle#SimpleHashFromMap)
+  * They are said to eventually use `iavl prove` to make the verification, details are as below:
+    * [iavl: prove.go](https://github.com/cosmos/iavl/blob/de0740903a67b624d887f9055d4c60175dcfa758/proof.go#L53). The right child is mistakenly ignored when a left child exists.  
 
 ## Nomad
 * Time: 02-08-2022
