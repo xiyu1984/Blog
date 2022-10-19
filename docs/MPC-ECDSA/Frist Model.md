@@ -21,10 +21,24 @@ In this ariticle, we will introduce s simple model<sup>[2]</sup> transforming th
 * Fro each pair of parties $\mathcal{P_i}$ and $\mathcal{P_j}$, generate $\hat{\alpha_{i,j}}+\hat{\beta_{j,i}}=x_j k_i$ with a similar method.  
 * For more intuitively, there will be four global matrix:
     * $\mathbf{A}$ and $\mathbf{B}$:
-        * $\mathcal{P_i}$ only knows the line $\mathbf{A_i}$ in matrix $\mathbf{A}$ and $\mathbf{B_i}$ in matrix $\mathbf{B}$
-    $$\left[\begin{array}{cc}\alpha_{1,1}&\alpha_{1,2}&...&\alpha_{1,n}\\\alpha_{2,1}&\alpha_{2,2}&...&\alpha_{2,n}\\...&...&...&...\\\alpha_{n,1}&\alpha_{n,2}&...&\alpha_{n,n}\end{array}\right]$$
+        * $\mathcal{P_i}$ only knows the line $\mathbf{A_i}$ in matrix $\mathbf{A}$ and $\mathbf{B_i}$ in matrix $\mathbf{B}$  
+    
+    $$\left[\begin {array}{cc}
+    \alpha_{1,1}&\alpha_{1,2}&...&\alpha_{1,n}\\
+    \alpha_{2,1}&\alpha_{2,2}&...&\alpha_{2,n}\\
+    \vdots&\vdots&\ddots&\vdots\\
+    \alpha_{n,1}&\alpha_{n,2}&...&\alpha_{n,n}
+    \end{array}\right]$$
 
-    $$\left[\begin{array}{cc}\beta_{1,1}&\beta_{1,2}&...&\beta_{1,n}\\\beta_{2,1}&\beta_{2,2}&...&\beta_{2,n}\\...&...&...&...\\\beta_{n,1}&\beta_{n,2}&...&\beta_{n,n}\end{array}\right]$$    
+    $$\left[
+    \begin{array}{cc}
+    \beta_{1,1}&\beta_{1,2}&...&\beta_{1,n}\\
+    \beta_{2,1}&\beta_{2,2}&...&\beta_{2,n}\\
+    \vdots&\vdots&\ddots&\vdots\\
+    \beta_{n,1}&\beta_{n,2}&...&\beta_{n,n}
+    \end{array}
+    \right]$$  
+    
     * $\hat{\mathbf{A}}$ and $\hat{\mathbf{B}}$:  
 
 
@@ -33,5 +47,5 @@ In this ariticle, we will introduce s simple model<sup>[2]</sup> transforming th
 ### Verify
 
 ## Reference
-[1] [UC Non-Interactive, Proactive, Threshold ECDSA with Identifiable Aborts](https://eprint.iacr.org/2021/060.pdf)
+[1] [UC Non-Interactive, Proactive, Threshold ECDSA with Identifiable Aborts](https://eprint.iacr.org/2021/060.pdf)  
 [2] [R. Gennaro and S. Goldfeder. Fast multiparty threshold ECDSA with fast trustless setup. In Proceedings of the 2018 ACM SIGSAC Conference on Computer and Communications Security, CCS 2018, Toronto, ON, Canada, October 15-19, 2018, pages 1179–1194, 2018. doi: 10.1145/3243734.3243859.](https://doi.org/10.1145/3243734.3243859)
