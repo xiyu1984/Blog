@@ -19,27 +19,34 @@ In this ariticle, we will introduce s simple model<sup>[2]</sup> transforming th
     * $\mathcal{P_i}$ calculates $\alpha_{i,j}=dec_i(E_{j,i})=dec_i(enc_i(\gamma_j k_i - \beta_{j,i}))=\gamma_j k_i - \beta_{j,i}$
     * As a result,  $\alpha_{i,j}+\beta_{j,i}=\gamma_j k_i$
 * Fro each pair of parties $\mathcal{P_i}$ and $\mathcal{P_j}$, generate $\hat{\alpha_{i,j}}+\hat{\beta_{j,i}}=x_j k_i$ with a similar method.  
-* For more intuitively, there will be four global matrix:
-    * $\mathbf{A}$ and $\mathbf{B}$:
-        * $\mathcal{P_i}$ only knows the line $\mathbf{A_i}$ in matrix $\mathbf{A}$ and $\mathbf{B_i}$ in matrix $\mathbf{B}$  
+* Let's look into $\alpha_{i,j}$ and $\beta_{j,i}$ deeper, for more intuitively, we can express their relationships as matrixes:
     
     $$\left[\begin {array}{cc}
     \alpha_{1,1}&\alpha_{1,2}&...&\alpha_{1,n}\\
     \alpha_{2,1}&\alpha_{2,2}&...&\alpha_{2,n}\\
     \vdots&\vdots&\ddots&\vdots\\
     \alpha_{n,1}&\alpha_{n,2}&...&\alpha_{n,n}
-    \end{array}\right]$$
-
-    $$\left[
+    \end{array}\right]^T + \left[
     \begin{array}{cc}
     \beta_{1,1}&\beta_{1,2}&...&\beta_{1,n}\\
     \beta_{2,1}&\beta_{2,2}&...&\beta_{2,n}\\
     \vdots&\vdots&\ddots&\vdots\\
     \beta_{n,1}&\beta_{n,2}&...&\beta_{n,n}
     \end{array}
-    \right]$$  
-    
-    * $\hat{\mathbf{A}}$ and $\hat{\mathbf{B}}$:  
+    \right] = \left[
+    \begin{array}{cc}
+    \gamma_1k_1&\gamma_1k_2&...&\gamma_{1}k_{n}\\
+    \gamma_{2}k{1}&\gamma_{2}k{2}&...&\gamma_{2}k{n}\\
+    \vdots&\vdots&\ddots&\vdots\\
+    \gamma_{n}k{1}&\gamma_{n}k{2}&...&\gamma_{n}k{n}
+    \end{array}
+    \right]$$
+
+    * $\mathcal{P_i}$ only knows the i-th row of matrix $\mathbf{A}$ and the i-th row of matrix $\mathbf{B}$
+    * Recall that $\alpha_{i,j}+\beta_{j,i}=\gamma_j k_i$, so the pairing is the i-th row of $A$ and the i-th column of $B$
+    * $\alpha_{i,i}=\gamma_{i,i}$ and $\beta_{i,i}=0$
+    * $\gamma\cdot k=(\sum{\gamma_i})\cdot(\sum{k_j})=\sum_{i}\sum_{j}{\gamma_{i}k{j}}$, that is the summation of all the elements in both $A$ and $B$
+* $\hat{\alpha_{i,j}}$ and $\hat{\beta_{j,i}}$ has a similiar situation, that is $x\cdot k=(\sum{x_i})\cdot(\sum{k_j})=\sum_{i}\sum_{j}{x_{i}k{j}}$ equal to the summation of all the elements in similiar matrixes $\hat{A}$ and $\hat{B}$
 
 
 ### Sign
