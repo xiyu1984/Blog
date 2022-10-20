@@ -4,7 +4,7 @@ An MPC-ECDSA is a multi-party's version of the standard ECDSA, which is compatib
 The references of the *first* model in this article can be found [here](#reference)<sup>[1][2]</sup>.  
 
 ## Principle
-A [Standard ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) includes $(\mathbb{G}; q; g)$ denoting the group-order-generator tuple associated with the ECDSA curve, private key $x\in \mathbb{F_{q}}$ and related public key $X=g^{x}$ ( actually it's a [scalar multiplication](../zk/Elliptic.md#scalar-multiplication) $x\cdot G$ of the elliptic curve ), $\rho$ the x-projection of point $g^{k^{-1}}\in\mathbb{G}$ where $k$ is a random element of $\mathbb{F_{q}}$, $\sigma=k(m+x\rho)$ where m is the hash of the message to be signed. The signature is $(\rho,\sigma)$. The verification is whether $\rho$ is equal to $g^{m\sigma^{-1}}\cdot X^{\rho\sigma^{-1}}$ ( Actually it's a [addition of two points](../zk/Elliptic.md#addition) in the elliptic curve ).  
+A [Standard ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) includes $(\mathbb{G}; q; g)$ denoting the group-order-generator tuple associated with the ECDSA curve, private key $x\in \mathbb{F_{q}}$ and related public key $X=g^{x}$ ( actually it's a [scalar multiplication](../zk/Elliptic.md#scalar-multiplication) $x\cdot G$ of the elliptic curve ), $\rho$ the x-projection of point $g^{k^{-1}}\in\mathbb{G}$ where $k$ is a random element of $\mathbb{F_{q}}$, $\sigma=k(m+x\rho)$ where m is the hash of the message to be signed. The signature is $(\rho,\sigma)$. The verification is whether $\rho$ is the x-projection of $g^{m\sigma^{-1}}\cdot X^{\rho\sigma^{-1}}$ ( Actually it's a [addition of two points](../zk/Elliptic.md#addition) in the elliptic curve ).  
 
 In this ariticle, we will introduce s simple model<sup>[2]</sup> transforming the single participant signing into a multi-parties process. In this model, the security threshold is $t=n-1$, that is, all participants follow the protocol.
 
@@ -57,7 +57,7 @@ In this ariticle, we will introduce s simple model<sup>[2]</sup> transforming th
 * Note that both the global random $k$ and global private key $x$ are unknown to anyone, and also the temporary variable global $\gamma$.  
 
 ### Verify
-The verification is just the same as [standard ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm).
+The verification is just the same as [standard ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm). That is, whether $\rho$ is the x-projection of $g^{m\sigma^{-1}}\cdot X^{\rho\sigma^{-1}}$.
 
 ## Reference
 [1] [UC Non-Interactive, Proactive, Threshold ECDSA with Identifiable Aborts](https://eprint.iacr.org/2021/060.pdf)  
