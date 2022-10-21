@@ -47,8 +47,8 @@ In this ariticle, we will introduce s simple model<sup>[2]</sup> transforming th
     * $\alpha_{i,i}=\gamma_{i,i}$ and $\beta_{i,i}=0$
     * $\gamma\cdot k=(\sum{\gamma_i})\cdot(\sum{k_j})=\sum_{i}\sum_{j}{\gamma_{i}k{j}}$, that is the summation of all the elements in both $A$ and $B$
 * $\hat{\alpha_{i,j}}$ and $\hat{\beta_{j,i}}$ has a similiar situation, that is $x\cdot k=(\sum{x_i})\cdot(\sum{k_j})=\sum_{i}\sum_{j}{x_{i}k{j}}$ equal to the summation of all the elements in similiar matrixes $\hat{A}$ and $\hat{B}$
-* For each $\mathcal{P_i}$, calculate $\delta_{i}=\gamma_{i}k_i+\sum_{j\neq i}{(\alpha_{i,j}+\beta_{i,j})}=\sum_j{(\alpha_{i,j}+\beta_{i,j})}$, that is the i-th row in both $A$ and $B$ which belongs to $\mathcal{P_i}$. And then sends $(\gamma^{i},\delta^{i})$ to public. 
-* $\sum{\delta_i}$ is the summation of all elements in both $A$ and $B$. So publicly, everyone can get $g^{k^{-1}}=(\Pi g^{\gamma^{i}})^{(\sum{\delta^j})^{-1}}$, thus abtaining $\rho$  
+* For each $\mathcal{P_i}$, calculate $\delta_{i}=\gamma_{i}k_i+\sum_{j\neq i}{(\alpha_{i,j}+\beta_{i,j})}=\sum_j{(\alpha_{i,j}+\beta_{i,j})}$, that is the i-th row in both $A$ and $B$ which belongs to $\mathcal{P_i}$. And then sends $(g^{\gamma_{i}},\delta_{i})$ to public. 
+* $\sum{\delta_i}$ is the summation of all elements in both $A$ and $B$. So publicly, everyone can get $g^{k^{-1}}=(\Pi_{i}{g^{\gamma_{i}}})^{(\sum_{j}{\delta_j})^{-1}}$, thus abtaining $\rho$  
 
 ### Sign
 * Similiarly, for each $\mathcal{P_i}$, calculate $\sigma_i=k_{i}m+\rho(x_i k_i+\sum_{j\neq i}{(\hat{\alpha_{i,j}}+\hat{\beta_{i,j}})})$. And then sends to public
