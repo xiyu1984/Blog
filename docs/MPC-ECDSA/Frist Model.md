@@ -11,7 +11,7 @@ In this ariticle, we will introduce s simple model<sup>[2]</sup> transforming th
 ### Setup(Key Generation)
 * For each participant $\mathcal{P_i}$, generate a random $x_i\in\mathbb{F_{q}}$ and sends $X_i=g^{x_i}$ to the public.  
 * The global public key is $X=\sum{X_i}\in\mathbb{G}$. And the related global private key is $x=\sum{x_i}$, which is unknown to everyone.  
-* For each $\mathcal{P_i}$ defines both the $enc_i$ and $dec_i$ algorithms that are addition homomorphic. The classic [ElGamma Encryption](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) is one of these algorithms.  
+* For each $\mathcal{P_i}$ defines both the $enc_i$ and $dec_i$ algorithms that are addition homomorphic. The classic [ElGamma Encryption](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) is one of these algorithms, and also the [Paillier cryptosystem](https://en.wikipedia.org/wiki/Paillier_cryptosystem)<sup>[3]</sup>.  
 * For each $\mathcal{P_i}$ generate local a share $k_i$ and $\gamma_i$. This makes a global $k=\sum{k_i}$ and $\gamma=\sum{\gamma_i}$, but no one knows them.  
 * For each pair of parties $\mathcal{P_i}$ and $\mathcal{P_j}$,  
     * $\mathcal{P_i}$ generates $K_i=enc_i(k_i)$ and sends it to $\mathcal{P_j}$. $enc_i(k_i)$ means encrypting $k_i$ with $\mathcal{P_i}$'s public key $X_i=g^{x_i}$
@@ -61,4 +61,5 @@ The verification is just the same as [standard ECDSA](https://en.wikipedia.org/w
 
 ## Reference
 [1] [UC Non-Interactive, Proactive, Threshold ECDSA with Identifiable Aborts](https://eprint.iacr.org/2021/060.pdf)  
-[2] [R. Gennaro and S. Goldfeder. Fast multiparty threshold ECDSA with fast trustless setup. In Proceedings of the 2018 ACM SIGSAC Conference on Computer and Communications Security, CCS 2018, Toronto, ON, Canada, October 15-19, 2018, pages 1179–1194, 2018. doi: 10.1145/3243734.3243859.](https://doi.org/10.1145/3243734.3243859)
+[2] [R. Gennaro and S. Goldfeder. Fast multiparty threshold ECDSA with fast trustless setup. In Proceedings of the 2018 ACM SIGSAC Conference on Computer and Communications Security, CCS 2018, Toronto, ON, Canada, October 15-19, 2018, pages 1179–1194, 2018. doi: 10.1145/3243734.3243859.](https://doi.org/10.1145/3243734.3243859)  
+[3] [Public-Key Cryptosystems Based on Composite Degree Residuosity Classes](https://link.springer.com/content/pdf/10.1007%2F3-540-48910-X_16.pdf)  
