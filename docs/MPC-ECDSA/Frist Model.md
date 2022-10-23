@@ -14,7 +14,7 @@ In this ariticle, we will introduce s simple model<sup>[2]</sup> transforming th
 * For each $\mathcal{P_i}$ defines both the $enc_i$ and $dec_i$ algorithms that are addition homomorphic. The classic [ElGamma Encryption](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) is one of these algorithms, and also the [Paillier cryptosystem](https://en.wikipedia.org/wiki/Paillier_cryptosystem)<sup>[3]</sup>.  
 * For each $\mathcal{P_i}$ generate local a share $k_i$ and $\gamma_i$. This makes a global $k=\sum{k_i}$ and $\gamma=\sum{\gamma_i}$, but no one knows them.  
 * For each pair of parties $\mathcal{P_i}$ and $\mathcal{P_j}$,  
-    * $\mathcal{P_i}$ generates $K_i=enc_i(k_i)$ and sends it to $\mathcal{P_j}$. $enc_i(k_i)$ means encrypting $k_i$ with $\mathcal{P_i}$'s public key $X_i=g^{x_i}$
+    * $\mathcal{P_i}$ generates $K_i=enc_i(k_i)$ and sends it to $\mathcal{P_j}$.  
     * $\mathcal{P_j}$ samples a random $\beta_{j,i}\in\mathbb{F_q}$, calculate $E_{j,i}=(\gamma_j\odot K_i)\oplus enc_i(-\beta_{j,i})=enc_i(\gamma_j k_i - \beta_{j,i})$, and then sends $E_{j,i}$ to $\mathcal{P_i}$. Note that here $\mathcal{P_j}$ uses $\mathcal{P_i}$'s public key to encrypt $-\beta_{j,i}$
     * $\mathcal{P_i}$ calculates $\alpha_{i,j}=dec_i(E_{j,i})=dec_i(enc_i(\gamma_j k_i - \beta_{j,i}))=\gamma_j k_i - \beta_{j,i}$
     * As a result,  $\alpha_{i,j}+\beta_{j,i}=\gamma_j k_i$
@@ -58,6 +58,12 @@ In this ariticle, we will introduce s simple model<sup>[2]</sup> transforming th
 
 ### Verify
 The verification is just the same as [standard ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm). That is, whether $\rho$ is the x-projection of $g^{m\sigma^{-1}}\cdot X^{\rho\sigma^{-1}}$.
+
+### Improvement
+* [Paillier cryptosystem](https://en.wikipedia.org/wiki/Paillier_cryptosystem) is used as the $enc$ and $dec$ algorithm.
+* A NIZK (non-interactive zero-knowledge proof of knowledge) is used to prove the correctness of the public key related to the $enc$
+* When $\mathcal{P}_i$ and $\mathcal{P}_j$ are share-computing $\alpha_{i,j}$ and $\beta_{j, i}$, as well as $\hat\alpha_{i,j}$ and $\hat\beta_{j, i}$, a NIZK is used to prove that the values envolved in the calculation are the same as the values of $\{K_i\}$, $\{g^{\gamma_i}\}$, and $\{X_i\}$.
+
 
 ## Reference
 [1] [UC Non-Interactive, Proactive, Threshold ECDSA with Identifiable Aborts](https://eprint.iacr.org/2021/060.pdf)  
