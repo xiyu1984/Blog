@@ -14,16 +14,26 @@ $$f(\xi)=\sum_{j=0}^{t}{f(\xi_j)\mathcal{l}_j(\xi)}$$
 Shamir’s scheme for sharing secret is based on [Lagrange interpolation theorem](#lagrange-interpolation-theorem).  
 Let $\{(1,f(1)), (2,f(2)),..., (t,f(t)), (t+1,f(t+1),...,(n,f(n))\}$ be the n nodes owned by $n$ participants, in which $f(j)$ are only known by participant $\mathcal{P}_j$.  
 A polynomial with degree $t$ has the following form:  
-$$f(\xi)=\sum_{j=0}^{t}{a_j\cdot\xi^j}$$  
+
+$$f(\xi)=\sum_{j=0}^{t}{a_j\cdot\xi^j}$$
+
 and $f(0)=a_0$.  
 Also, suppose we select $t+1$ nodes $N_{selected}=\{\xi_i;i\in [0, t]\}$, so we have:  
+
 $$f(0)=\sum_{j=0}^{t}{f(\xi_j)\mathcal{l}_j(0)}$$  
+
 and  
-$$\mathcal{l}_j(0)=\prod_{\begin{array}{cl} \xi_m\in N_{selected}\\m\neq j \end{array}}{\frac{0-\xi_m}{\xi_j-\xi_m}}=\prod_{\begin{array}{cl} \xi_m\in N_{selected}\\m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}$$  
+
+$$\mathcal{l}_j(0)=\prod_{\xi_m\in N_{selected},m\neq j}^{}{\frac{0-\xi_m}{\xi_j-\xi_m}}=\prod_{\begin{array}{cl} \xi_m\in N_{selected}\\m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}$$
+
 so with arbitrary $t+1$ out of $n$ participants, we can get: 
+
 $$a_0=\sum_{j=0}^{t}{f(\xi_j)\mathcal{l}_j(0)}=\sum_{j=0}^{t}{[f(\xi_j)\cdot\prod_{\begin{array}{cl} \xi_m\in N_{selected}\\m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}]}$$  
+
 We can let $a_0$, the coefficient of $\xi^0$, in a t-degree polynomial be the secret, and let  
+
 $$x_j=f(j)\cdot\prod_{\begin{array}{cl} \xi_m\in N_{selected}\\m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}$$  
+
 be the secret slice of $\mathcal{P}_j$, and let $x=a_0=\sum_{j=1}^{t+1}{x_j}$ be the global secret. Every participant only knows their own secret slice and any $t$ participants cannot recover the global secret.  
 
 ## Application to MPC-ECDSA  
