@@ -1,7 +1,7 @@
 # t-n Sharing
 
 ## Introduction
-From a high level, `t-n-sharing` is for n participants sharing a secrete $s$. Arbitrary $t(t\leq n)$ participants can work together to recover the secret, but with negligible probability for any $t-1$ participants.  
+From a high level, `t-n-sharing` is for n participants sharing a secrete $s$. Arbitrary $t+1(t < n)$ participants can work together to recover the secret, but with negligible probability for any $t$ participants.  
 
 ## Priciple
 ### [Lagrange interpolation theorem](https://en.wikipedia.org/wiki/Lagrange_polynomial)  
