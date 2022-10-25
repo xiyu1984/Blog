@@ -7,7 +7,8 @@ From a high level, `t-n-sharing` is for n participants sharing a secrete $s$. Ar
 ### [Lagrange interpolation theorem](https://en.wikipedia.org/wiki/Lagrange_polynomial)  
 Given a $t+1$ nodes: $\{(\xi_0, f(\xi_0)), (\xi_1, f(\xi_1)),...,(\xi_t, f(\xi_t)); \xi_i \neq \xi_j(i \neq j)\}$, we can uniquely define a polynomial with degree $\leq t$ by:    
 
-$$\mathcal{l_j}(\xi)=\prod_{\begin{array}{cl} 0\leq m \leq t\\m\neq j \end{array}}^{}{\frac{\xi-\xi_m}{\xi_j-\xi_m}}$$  
+$$\mathcal{l}_ j(\xi)=\prod_{\begin{array}{cl} 0\leq m \leq t\\
+m\neq j \end{array}}^{}{\frac{\xi-\xi_m}{\xi_j-\xi_m}}$$  
 
 So the polynomial about $\xi$ is as follow:
 
