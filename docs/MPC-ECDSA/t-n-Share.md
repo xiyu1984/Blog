@@ -44,7 +44,7 @@ m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}$$
 
 be the secret slice of $\mathcal{P}_ j$, and let 
 
-$$x=a_{0}=\sum_{j=1}^{t+1}{x_{j}}$$
+$$x=a_{0}=\sum_{j=0}^{t}{x_{j}}$$
 
 be the global secret. Every participant only knows their own secret slice and any $t$ participants cannot recover the global secret.  
 
@@ -53,7 +53,7 @@ For building a ECDSA signature, things are the same as [First Model](./First%20M
 
 $$x=\sum_{i=0}^{t}{x_i}=a_{0}$$    
 
-Besides, an auxiliary information $\{v_j=g^{a_j}\in\mathbb{G};j\in[0,t]\}$ is published, where $a_j$ is the coefficient of $\xi_j$ of a t-degree polynomial $f(\xi)$.  
+Besides, an auxiliary information $\{v_j=g^{a_j}\in\mathbb{G};j\in[0,t]\}$ is published, where $a_j$ is the coefficient of $\xi^j$ of a t-degree polynomial $f(\xi)$.  
 $\mathcal{P}_ j$ verifies 
 
 $$g^{f(j)}=?\prod_{i=0}^{t}{v_i^{j^i}}=\prod_{i=0}^{t}{g^{j^i \cdot a_i}}$$
