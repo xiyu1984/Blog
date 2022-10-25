@@ -34,7 +34,7 @@ m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}$$
 
 so with arbitrary $t+1$ out of $n$ participants, we can get: 
 
-$$a_0=\sum_{j=0}^{t}{f(\xi_j)\mathcal{l}_j(0)}=\sum_{j=0}^{t}{[f(\xi_j)\cdot\prod_{\begin{array}{cl} \xi_m\in N_{s}\\
+$$a_0=\sum_{j=0}^{t}{f(\xi_j)\mathcal{l}_j(0)}=\sum _ {j=0} ^ {t}{[f(\xi_j)\cdot\prod _ {\begin{array}{cl} \xi_m\in N_{s}\\
 m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}]}$$  
 
 We can let $a_0$, the coefficient of $\xi^0$, in a t-degree polynomial be the secret, and let  
