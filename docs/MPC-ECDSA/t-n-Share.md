@@ -1,4 +1,5 @@
 # t-n Sharing
+*Note that if `Unable to render expression.` happened for mathematical formulas, click `Blame` and then click `Normal View`, so that everything will be OK.*
 
 ## Introduction
 From a high level, `t-n-sharing` is for n participants sharing a secrete $s$. Arbitrary $t+1(t < n)$ participants can work together to recover the secret, but with negligible probability for any $t$ participants.  
