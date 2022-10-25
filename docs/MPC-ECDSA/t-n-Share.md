@@ -6,8 +6,11 @@ From a high level, `t-n-sharing` is for n participants sharing a secrete $s$. Ar
 ## Priciple
 ### [Lagrange interpolation theorem](https://en.wikipedia.org/wiki/Lagrange_polynomial)  
 Given a $t+1$ nodes: $\{(\xi_0, f(\xi_0)), (\xi_1, f(\xi_1)),...,(\xi_t, f(\xi_t)); \xi_i \neq \xi_j(i \neq j)\}$, we can uniquely define a polynomial with degree $\leq t$ by:    
+
 $$\mathcal{l_j}(\xi)=\prod_{\begin{array}{cl} 0\leq m \leq t\\m\neq j \end{array}}^{}{\frac{\xi-\xi_m}{\xi_j-\xi_m}}$$  
-So the polynomial about $\xi$ is as follow:  
+
+So the polynomial about $\xi$ is as follow:
+
 $$f(\xi)=\sum_{j=0}^{t}{f(\xi_j)\mathcal{l}_j(\xi)}$$  
  
 ### [Shamir’s scheme](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing)  
@@ -18,21 +21,25 @@ A polynomial with degree $t$ has the following form:
 $$f(\xi)=\sum_{j=0}^{t}{a_j\cdot\xi^j}$$
 
 and $f(0)=a_0$.  
-Also, suppose we select $t+1$ nodes $N_{selected}=\{\xi_i;i\in [0, t]\}$, so we have:  
+Also, suppose we select $t+1$ nodes $N_{s} = \{\xi_i; i\in [0, t]\}$, so we have:  
 
 $$f(0)=\sum_{j=0}^{t}{f(\xi_j)\mathcal{l}_j(0)}$$  
 
 and  
 
-$$\mathcal{l}_j(0)=\prod_{\xi_m\in N_{selected},m\neq j}^{}{\frac{0-\xi_m}{\xi_j-\xi_m}}=\prod_{\begin{array}{cl} \xi_m\in N_{selected}\\m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}$$
+$$\mathcal{l}_ j(0)=\prod_ {\begin{array}{cl} \xi_m\in N_{s} \\
+m\neq j \end{array}}{\frac{0-\xi_m}{\xi_j-\xi_m}}=\prod_ {\begin{array}{cl} \xi_m\in N_{s} \\
+m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}$$
 
 so with arbitrary $t+1$ out of $n$ participants, we can get: 
 
-$$a_0=\sum_{j=0}^{t}{f(\xi_j)\mathcal{l}_j(0)}=\sum_{j=0}^{t}{[f(\xi_j)\cdot\prod_{\begin{array}{cl} \xi_m\in N_{selected}\\m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}]}$$  
+$$a_0=\sum_{j=0}^{t}{f(\xi_j)\mathcal{l}_j(0)}=\sum_{j=0}^{t}{[f(\xi_j)\cdot\prod_{\begin{array}{cl} \xi_m\in N_{s}\\
+m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}]}$$  
 
 We can let $a_0$, the coefficient of $\xi^0$, in a t-degree polynomial be the secret, and let  
 
-$$x_j=f(j)\cdot\prod_{\begin{array}{cl} \xi_m\in N_{selected}\\m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}$$  
+$$x_j=f(j)\cdot\prod_{\begin{array}{cl} \xi_m\in N_{s}\\
+m\neq j \end{array}}{\frac{\xi_m}{\xi_m-\xi_j}}$$  
 
 be the secret slice of $\mathcal{P}_j$, and let $x=a_0=\sum_{j=1}^{t+1}{x_j}$ be the global secret. Every participant only knows their own secret slice and any $t$ participants cannot recover the global secret.  
 
