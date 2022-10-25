@@ -2,4 +2,4 @@
 
 ## Index
 * MPC-ECDSA
-    * [First Model](Frist%20Model.md)
+    * [First Model](First%20Model.md)
