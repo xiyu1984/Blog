@@ -138,17 +138,34 @@ Nomad bridge has been attacked when they are making an update. The attack happen
 
 ## THORChain
 
-* 事件详情：假充值（内容整理于[https://www.freebuf.com/articles/blockchain-articles/279120.html](https://www.freebuf.com/articles/blockchain-articles/279120.html)，侵删）
+* 事件1详情：假充值（内容整理于[https://www.freebuf.com/articles/blockchain-articles/279120.html](https://www.freebuf.com/articles/blockchain-articles/279120.html)，侵删）
     * 事件摘要：代码漏洞，
         * 由于错误的定义（对于代币符号的默认值设成了ETH），如果跨链充值的 ERC20 代币符号为 **ETH**，那么将会出现逻辑错误，导致充值的代币被识别为真正的以太币 **ETH**。（该漏洞已经被修复）
-* 事件详情：非法转账（内容整理于[https://www.tuoniaox.com/news/p-509320.html](https://www.tuoniaox.com/news/p-509320.html)，侵删）
-    * **Event Summary**：
-        * THORChain Router合约的TransferOut函数的漏洞（没有对账户金额进行判断）；
-        * Token合约的接口缺陷；
-    * 攻击者之所以可以实现这样的攻击，是因为THORChain Router合约的TransferOut函数漏洞导致--使用asset.call(abi.encodeWithSignature("transfer(address,uint256)" , to, amount))语句进行转账;
-    * 管理Token的合约，其 `transfer` 方法，为"transfer(address,uint256)" 形式，address为to地址，uint256为金额：
-        * 这样的transfer只能在内部以 `msg.sender` 来获取到"from"地址，那么此时就变成了"THORChain Router"合约的地址；
-        * 但是THORChain Router的TransferOut中在调用asset.call之前并没有判断调用者是否有足够的金额进行转账；
+* 事件2详情：[参考](https://thearchitect.notion.site/THORChain-Incident-07-15-7d205f91924e44a5b6499b6df5f6c210)
+    * 时间：2021-07-15
+    * 事件摘要：
+        * 攻击者构造一个Wrapped Router合约C
+        * 攻击者调用合约C，并且传入value为200，即200个ETH
+        * C内部调用官方Router合约的deposit方法，传入value改为0
+        * Router合约抛出事件Deposit，amount为0
+        * 节点从Deposit事件取出的amount为0，但是又用tx.value方法获取到值200，从而攻击成功
+    * 损失：约8M
+    * 总结：
+        * 需要对EVM的系统方法非常熟悉才去使用，否则可能踩坑
+        * 尽量减少逻辑，使得跨链功能尽可能简单，减少出错概率
+        * 逻辑主要放在合约中，节点只负责搬运
+* 事件3详情：非法转账（内容整理于[https://www.tuoniaox.com/news/p-509320.html](https://www.tuoniaox.com/news/p-509320.html)，侵删）,[参考](https://thearchitect.notion.site/THORChain-Incident-07-22-874a06db7bf8466caf240e1823697e35)
+    * 时间： 2021-07-22
+    * 事件摘要：
+        * 攻击者构造一个Wrapped Router合约C
+        * 攻击者调用Router方法returnVaultAssets，设置asgard（接收者）参数为C
+        * returnVaultAssets方法中调用`asgard.call{value:msg.value}("")`方法将msg.value转给C
+        * C接收到ETH会触发onReceive或者fallback方法，C抛出Deposit事件，参数为想要获得的token信息
+        * 节点处理Deposit事件，发现memo参数无法解析，会进入refund流程
+        * 攻击者调用transferOut进行退款，将之前Deposit中设置的token退回到指定地址，攻击发生
+    * 总结：
+        * EVM的低级调用有一些副作用，需要妥善处理
+        * 节点不应该承担过多的任务
 * **对我们的启发**
     * 虽然在我们的场景中，跨链Token方面的操作在应用层合约中完成（如locker），但权限校验机制需要由底层跨链合约来提供；
     * 跨链协议层的SQOS确实非常重要；
