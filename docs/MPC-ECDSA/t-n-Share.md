@@ -61,4 +61,4 @@ $$g^{f(j)}=?\prod_{i=0}^{t}{v_i^{j^i}}=\prod_{i=0}^{t}{g^{j^i \cdot a_i}}$$
 
 in $\mathbb{G}$ to check that whether his share $f(j)$ is valid on the polynomial.  
 
-The rest of the are just the same as [First Model](./First%20Model.md). As the summation of arbitrary $t+1$ shares of secret slices is equal to $a_0$, what we only need to verify the signature is a unique global public key.  
+The rest parts are just the same as [First Model](./First%20Model.md). As the summation of arbitrary $t+1$ shares of secret slices is equal to $a_0$, what we only need to verify the signature is a unique global public key.  
