@@ -1,4 +1,4 @@
-# Dual-Key Stealthy Addresses Protocol
+# Dual-Key Stealthy Addresses Protocol<sup>[1](#[1])</sup>
 
 ## Principle
 ### Algoritm Work Flow
@@ -18,11 +18,11 @@ The work flow of transactions driven by DKSAP is as follows:
 
 ### Details
 * Only $V_i$, $S_i$, and $R$ are public
-* When participant $\mathcal{P}_i$ makes a transaction, he will publish an ephemeral destination address with a temporary $R$ with it
-* Everyone need to check if he has the right to operate on the new address
+* When participant $\mathcal{P}_i$ makes a transaction, he will publish an ephemeral destination address with a temporary $R$
+* Everyone need to check if he has the right to operate on the ephemeral address
 * It is able to achieve the scenario that the sender knows whom he sends to, but the receiver cannot publicly know where a transaction is from  
 * Except the sender, other participants can only see ephemeral addresses and related temporary numbers
 
 
 ## Reference
-[1] The Shadow Project. \Dual-key Stealth Addresses", in part of Shadow Documentation.
+#### [1] The Shadow Project. \Dual-key Stealth Addresses", in part of Shadow Documentation.
