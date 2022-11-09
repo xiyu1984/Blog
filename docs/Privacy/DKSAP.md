@@ -17,7 +17,7 @@ The work flow of transactions driven by DKSAP is as follows:
 7. As $T_A=c_{AB}G+S_B=c_{AB}G+s_{B}G$, so $B$ can operate on $T_A$ by $t_{A}=c_{AB}+s_{B}$, which could be treated as the private key of $T_A$
 
 ### Details
-* $V_i$, $S_i$ are public
+* Only $V_i$, $S_i$, and $R$ are public
 * When participant $\mathcal{P}_i$ makes a transaction, he will publish an ephemeral destination address with a temporary $R$ with it
 * Everyone need to check if he has the right to operate on the new address
 * It is able to achieve the scenario that the sender knows whom he sends to, but the receiver cannot publicly know where a transaction is from  
