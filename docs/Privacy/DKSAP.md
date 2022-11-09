@@ -1,4 +1,4 @@
-# Dual-Key Stealthy Addresses Protocol<sup>[1](#[1])</sup>
+# Dual-Key Stealthy Addresses Protocol<sup>[[1]](#1-the-shadow-project-dual-key-stealth-addresses-in-part-of-shadow-documentation)</sup>
 
 ## Principle
 ### Algoritm Work Flow
