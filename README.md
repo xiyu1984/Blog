@@ -8,6 +8,7 @@
 ### Algorithm
 * [ZK series](./docs/zk/)
 * [MPC series](./docs/MPC-ECDSA/)
+* [Privacy](./docs/Privacy/)
 
 ### Dev
 #### Polkadot
