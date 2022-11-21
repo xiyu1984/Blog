@@ -26,10 +26,10 @@ The most important improvement of v3 is described as *concentrated liquidity*, t
 Given current reserves $x_{c}$ and $y_{c}$, we have $k=x_{c}\cdot y_{c}$.  
 With $k$ as a constant, once the price $p_{X}(x,y)$ is limited in a range $[p_{X}^{min}, p_{X}^{max}]$, the size of reserves $x$ and $y$ are determined:  
 $$\left\{ \begin {array}{cc}
-p_{X}^{min}=\frac{y_{min}}{x_{max}} & \text{where} & x_{max}\cdot y_{min}=k \\
-p_{X}^{max}=\frac{y_{max}}{x_{min}} & \text{where} & x_{min}\cdot y_{max}=k 
-\end {array}\right.
-$$  
+p_{X}^{min}=\frac{y_{min}}{x_{max}}&\text{where}&x_{max}\cdot y_{min}=k\\
+p_{X}^{max}=\frac{y_{max}}{x_{min}}&\text{where}&x_{min}\cdot y_{max}=k
+\end{array}
+\right.$$  
 we can get $x_{min}=\sqrt{\frac{k}{p_{X}^{max}}}$, and $y_{min}=\sqrt{k\cdot p_{X}^{min}}$. We can also get $x_{max}$ and $y_{max}$, but they may not be so important.  
 
 As a result, uniswap v3 changes the equation<sup>[1]</sup> to:  
