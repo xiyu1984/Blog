@@ -15,7 +15,7 @@ $$p_{X}(x,y)=\frac{y}{x}$$
 So we get:  
 $$-\frac{dy}{dx}=\frac{y}{x}$$  
 i.e.  
-$$xdy+ydx=0$$  
+$$xdy+ydx=0$$
 This ordinary differential equation is solved as $x\cdot y=C$, where $C$ is an constant.  
 
 Note that other expressions of $p_{X}(x,y)$ based on *Assumption 1* can be used to make AMMs and get similar effectives, e.g., $p_{X}(x,y)=\frac{y^2}{x^2}$. **The key point is to solve the related ordinary differential equations**.  
@@ -25,11 +25,14 @@ The most important improvement of v3 is described as *concentrated liquidity*, t
 
 Given current reserves $x_{c}$ and $y_{c}$, we have $k=x_{c}\cdot y_{c}$.  
 With $k$ as a constant, once the price $p_{X}(x,y)$ is limited in a range $[p_{X}^{min}, p_{X}^{max}]$, the size of reserves $x$ and $y$ are determined:  
-$$\left\{ \begin {array}{cc}
+
+$$\left\{ 
+\begin {array}{cc}
 p_{X}^{min}=\frac{y_{min}}{x_{max}}&\text{where}&x_{max}\cdot y_{min}=k\\
 p_{X}^{max}=\frac{y_{max}}{x_{min}}&\text{where}&x_{min}\cdot y_{max}=k
 \end{array}
-\right.$$  
+\right.$$
+
 we can get $x_{min}=\sqrt{\frac{k}{p_{X}^{max}}}$, and $y_{min}=\sqrt{k\cdot p_{X}^{min}}$. We can also get $x_{max}$ and $y_{max}$, but they may not be so important.  
 
 As a result, uniswap v3 changes the equation<sup>[1]</sup> to:  
