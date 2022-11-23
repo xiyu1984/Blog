@@ -20,6 +20,20 @@ This ordinary differential equation is solved as $x\cdot y=C$, where $C$ is an c
 
 Note that other expressions of $p_{X}(x,y)$ based on *Assumption 1* can be used to make AMMs and get similar effectives, e.g., $p_{X}(x,y)=\frac{y^2}{x^2}$. **The key point is to solve the related ordinary differential equations**.  
 
+#### Accumulator and on-chain Oracle<sup>[2]</sup>
+A price accumulator at time $t$ is defined as:  
+
+$$a_t=\sum_{i=1}^{t}p_i$$  
+
+The average price from time $t_1$ to $t_2$ is:  
+
+$$p_{t_1, t_2}=\frac{a_{t_2}-a_{t_1}}{t_2-t_1}=\frac{\sum_{i=t_1}^{t_2}p_i}{t_2-t_1}$$  
+
+The average prices based on accumulation are used for other derivatives.  
+
+#### Precision
+`UQ112.112` format expresses the floating point number in a range of $[0, 2^{112}-1]$ with a precision of $\frac{1}{2^{112}}$.  
+
 ### v3
 The most important improvement of v3 is described as *concentrated liquidity*, that is, one can provide a LP with an restricted price range. This can be used to avoid very steep parts of the curve.  
 
@@ -42,4 +56,5 @@ which is a movation of the curve $x\cdot y=k$.
 Besides, given current reserves $x_{c}$ and $y_{c}$, one can calculate the amount of liquidity he needs to provide.
 
 ## Reference
-[1] [white paper-v3](https://uniswap.org/whitepaper-v3.pdf)
+[1] [white paper-v3](https://uniswap.org/whitepaper-v3.pdf)  
+[2] [white paper-v2](https://uniswap.org/whitepaper.pdf)
