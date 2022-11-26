@@ -34,6 +34,24 @@ The average prices based on accumulation are used for other derivatives.
 #### Precision
 `UQ112.112` format expresses the floating point number in a range of $[0, 2^{112}-1]$ with a precision of $\frac{1}{2^{112}}$.  
 
+#### Trading Fees
+In Uniswap v2, traders will continue to pay a 0.30% fee on all trades, $\frac{1}{6}$ of which, that is 0.05%, is paid for the protocol itself(the devopement team), and the rest is paid for liquidity providers.  
+Everything starts from *Formula 1*: $x\cdot y=k$.  
+Without trading fees, we can calculate $\Delta{y}$  given $x, y \text{ and } \Delta{x}$ by *Formula 2* :  
+$$(x+\Delta{x})(y-\Delta{y})=k$$  
+Consider trading fee is brought in, *Formula 2* changes into *Formula 3*:  
+$$(x+\theta \Delta{x})(y-\Delta{y})=k\text{ where}\space \theta\space\text{is the rate}$$  
+In v2 all $\Delta{x}$ will be in the liquidity pool until the provider withdrawing it, so the $k$ will change with every trading. That is $k'=(x+\Delta{x})(y-\Delta{y})$ will slightly larger than $k$ before a trading. The following *Formula 4* descripes the growth of $\sqrt{k}$ from time $t_1$ to $t_2$:  
+$$f_{1,2}=1-\frac{\sqrt{k_1}}{\sqrt{k_2}}=\frac{\sqrt{k_2}-\sqrt{k_1}}{\sqrt{k_2}}$$  
+Note that the denominator is $\sqrt{k_2}$, which means the growth is measured after the trading is succeded.  
+New liquidity tokens with $\phi\cdot f_{1,2}$ inflation will be mint to the protocol, and the amount of the new minted tokens is solved by the following equation:  
+$$\frac{s_m}{s_m+s_1}=\phi\cdot f_{1,2}=\phi\frac{\sqrt{k_2}-\sqrt{k_1}}{\sqrt{k_2}}$$  
+where $s_1$ is the total liquidity tokens' quantity of outstanding shares at time $t_1$.  
+$s_m$ is solved as:  
+$$s_m=\frac{\sqrt{k_2}-\sqrt{k_1}}{(\frac{1}{\phi}-1)\cdot\sqrt{k_2}+\sqrt{k_1}}\cdot s_1$$  
+As mentioned above, $\phi=\frac{1}{6}$ in v2. The liquidity token is `UNI` in Uniswap v2.  
+In the white paper of Uniswap v2<sup>[2]</sup>, there's an example, in which $s_1$ is the total shares a liquidity pool receives when a liquedity provider deposites a trading pair. The calculation happens once  the pool is withdrawed, then the provider get the "inflated" pool as the $k$ inflats every time a trading happens.        
+
 ### v3
 The most important improvement of v3 is described as *concentrated liquidity*, that is, one can provide a LP with an restricted price range. This can be used to avoid very steep parts of the curve.  
 

@@ -9,7 +9,7 @@
 * [ZK series](./docs/zk/)
 * [MPC series](./docs/MPC-ECDSA/)
 * [Privacy](./docs/Privacy/)
-* [Under Construction](./docs/AMM)
+* [AMM series](./docs/AMM)
 
 ### Dev
 #### Polkadot

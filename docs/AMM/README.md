@@ -1,3 +1,3 @@
 # AMM-Series
 ## Index
-* [uniswap](./uniswap.md)
+* [uniswap explanation](./uniswap%20explanation.md)
