@@ -50,7 +50,7 @@ where $s_1$ is the total liquidity tokens' quantity of outstanding shares at tim
 $s_m$ is solved as:  
 $$s_m=\frac{\sqrt{k_2}-\sqrt{k_1}}{(\frac{1}{\phi}-1)\cdot\sqrt{k_2}+\sqrt{k_1}}\cdot s_1$$  
 As mentioned above, $\phi=\frac{1}{6}$ in v2. The liquidity token is `UNI` in Uniswap v2.  
-In the white paper of Uniswap v2<sup>[2]</sup>, there's an example, in which $s_1$ is the total shares a liquidity pool receives when a liquedity provider deposites a trading pair. The calculation happens once  the pool is withdrawed, then the provider get the "inflated" pool as the $k$ inflats every time a trading happens.        
+In the white paper of Uniswap v2<sup>[2]</sup>, there's an example, in which $s_1$ is the total shares a liquidity pool receives when a liquedity provider deposites a trading pair. The calculation happens only once when the pool is withdrawed, then the provider gets the shares for providing the liquidity pool, and the protocol gets the "inflated" shares created every time a trading happens.  
 
 ### v3
 The most important improvement of v3 is described as *concentrated liquidity*, that is, one can provide a LP with an restricted price range. This can be used to avoid very steep parts of the curve.  
