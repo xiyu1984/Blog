@@ -29,7 +29,8 @@ The average price from time $t_1$ to $t_2$ is:
 
 $$p_{t_1, t_2}=\frac{a_{t_2}-a_{t_1}}{t_2-t_1}=\frac{\sum_{i=t_1}^{t_2}p_i}{t_2-t_1}$$  
 
-The average prices based on accumulation are used for other derivatives.  
+The average prices based on the accumulation are used for other derivatives.  
+Note that the mean prices from time $t_1$ to $t_2$ in a token pair are not the same, that is, the mean price of $X|Y$ is different from the mean price $Y|X$.  
 
 #### Precision
 `UQ112.112` format expresses the floating point number in a range of $[0, 2^{112}-1]$ with a precision of $\frac{1}{2^{112}}$.  
@@ -71,7 +72,17 @@ As a result, uniswap v3 changes the equation<sup>[1]</sup> to:
 $$(x+\frac{L}{\sqrt{p_X^{max}}})(y+L\cdot\sqrt{p_X^{min}})=L^2 \space\space\space\space \text{where} \space\space\space\space L^2=k$$  
 which is a movation of the curve $x\cdot y=k$.  
 
-Besides, given current reserves $x_{c}$ and $y_{c}$, one can calculate the amount of liquidity he needs to provide.
+Besides, given current reserves $x_{c}$ and $y_{c}$, one can calculate the amount of liquidity he needs to provide according to his price range.  
+
+#### Geometric Mean Price Oracle
+Besides the arithmetic mean of the prices based on liner accumulator in v2, v3 provides another accumulator based on the geometric mean, in which the mean prices of $X|Y$ and $Y|X$ are the same.  
+Take `1.0001` as the base of the logarithm, the accumulated price at time $t$ is:  
+$$a_t=\sum_{i=1}^{t}\log_{1.0001}{P_i}$$  
+As:  
+$$P_{t_1, t_2}=(\prod_{i=t_1}^{t_2}{P_i})^{\frac{1}{t_2-t_1}}$$  
+We have:  
+$$\log_{1.0001}P_{t_1, t_2}=\frac{\sum_{i=t_1}^{t_2}(\log_{1.0001}P_i)}{t_2-t_1}=\frac{a_{t_2}-a_{t_1}}{t_2-t_1}$$  
+
 
 ## Reference
 [1] [white paper-v3](https://uniswap.org/whitepaper-v3.pdf)  
