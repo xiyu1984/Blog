@@ -83,6 +83,15 @@ $$P_{t_1, t_2}=(\prod_{i=t_1}^{t_2}{P_i})^{\frac{1}{t_2-t_1}}$$
 We have:  
 $$\log_{1.0001}P_{t_1, t_2}=\frac{\sum_{i=t_1}^{t_2}(\log_{1.0001}P_i)}{t_2-t_1}=\frac{a_{t_2}-a_{t_1}}{t_2-t_1}$$  
 
+#### Implementation
+A concept of virtual reserves is brought in, that is, instead of tracking reserves $X$ and $Y$ as in v2, `liquidity` $L=\sqrt{x\cdot y}$ and `sqrtPrice` $\sqrt{P}=\sqrt{\frac{y}{x}}$ are tracked. The main advantage presented in the white paper is that only one of $L$ and $\sqrt{P}$ changes at a time.  
+As a result, virtual reserves of $X$ and $Y$ are presented as:  
+$$x=\frac{L}{\sqrt{P}}$$  
+$$y=L\sqrt{P}$$  
+Besides, given current `sqrtPrice` $\sqrt{P_c}$ and `liquidity` $\sqrt{L_c}$, if someone wants to add a new liquidity with a price range $[P_a, P_b]$ into the pool, the reserves of $X$ and $Y$ he needs to provide can be calculated as(suppose $P_c \in [P_a, P_b]$):  
+$$\Delta{X}=L_c\cdot (\frac{1}{\sqrt{P_c}}-\frac{1}{\sqrt{P_b}})$$  
+$$\Delta{Y}=L_c\cdot (\sqrt{P_c}-\sqrt{P_a})$$  
+The situation when $P_c \notin [P_a, P_b]$ is very simple, check the white paper<sup>[1]</sup> for details.  
 
 ## Reference
 [1] [white paper-v3](https://uniswap.org/whitepaper-v3.pdf)  
