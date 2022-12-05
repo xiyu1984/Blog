@@ -91,6 +91,17 @@ $$y=L\sqrt{P}$$
 Besides, given current `sqrtPrice` $\sqrt{P_c}$ and a user chooses a `liquidityDelta` $\sqrt{\Delta{L_c}}$, if someone wants to add a new liquidity with a price range $[P_a, P_b]$ into the pool, the reserves of $X$ and $Y$ he needs to provide can be calculated as(suppose $P_c \in [P_a, P_b]$):  
 $$\Delta{x}=\Delta{L_c}\cdot (\frac{1}{\sqrt{P_c}}-\frac{1}{\sqrt{P_b}})$$  
 $$\Delta{y}=\Delta{L_c}\cdot (\sqrt{P_c}-\sqrt{P_a})$$  
+The above formulas can be derived from the following:  
+$$
+\left\{ 
+\begin {array}{cc}
+\frac{y_c}{x_c}=\frac{\Delta{y}}{\Delta{x}} \\
+x_a = x_c+\Delta{x} \\
+y_b = y_c+\Delta{y}
+\end{array}
+\right.
+$$  
+That is, after the addition or remove of the `liquidity`, the price won't change.  
 The situation when $P_c \notin [P_a, P_b]$ is very simple, check the white paper<sup>[1]</sup> for details.  
 
 ## Reference
