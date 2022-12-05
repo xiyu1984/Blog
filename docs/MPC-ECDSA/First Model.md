@@ -63,7 +63,7 @@ The verification is just the same as [standard ECDSA](https://en.wikipedia.org/w
 ### Improvement
 * [Paillier cryptosystem](https://en.wikipedia.org/wiki/Paillier_cryptosystem) is used as the $enc$ and $dec$ algorithm.
 * A NIZK (non-interactive zero-knowledge proof of knowledge) is used to prove the correctness of the public key related to the $enc$
-* When $\mathcal{P}_i$ and $\mathcal{P}_j$ are share-computing $\alpha_{i,j}$ and $\beta_{j, i}$, as well as $\hat\alpha_{i,j}$ and $\hat\beta_{j, i}$, a NIZK is used to prove that the values envolved in the calculation are the same as the values of $\{K_i\}$, $\{g^{\gamma_i}\}$, and $\{X_i\}$.
+* When $\mathcal{P}_ i$ and $\mathcal{P}_ j$ are share-computing $\alpha_{i,j}$ and $\beta_{j, i}$, as well as $\hat\alpha_{i,j}$ and $\hat\beta_{j, i}$, a NIZK is used to prove that the values envolved in the calculation are the same as the values of $\{K_i\}$, $\{g^{\gamma_i}\}$, and $\{X_i\}$.
 
 
 ## Reference
