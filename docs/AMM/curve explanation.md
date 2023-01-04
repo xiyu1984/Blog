@@ -28,7 +28,7 @@ It seems the equation if `V2` just substitues the $\lambda$ in `V1` with $K(\mat
 When a swap happens, $D$ needs to be calculated iteratively by Newton's method first, that is, $D_{k+1}=D_k-\frac{F(\mathbf{x}, D_k)}{F'_{D}(\mathbf{x}, D_k)}$. And then calculate the $x_i$ in the swap with the same method.  
 
 #### Reflections
-* According to the defination of $D$, it is not independent to $\mathbf{x}$ as it is actually the the summation of $\mathbf{x}$. But $D$ is used as a independent variable after initialized, in which way $D$ is more like a free coefficient.  
+* According to the definition of $D$, it is not independent as it is actually the the summation of $\mathbf{x}$. But $D$ is used as an independent variable after initialization, which is more like a free coefficient.  
 
 
 
