@@ -135,6 +135,6 @@ $$
 
 and  
 
-$$A(\omega_n^k)=A_0(\omega_{\frac{n}{2}}^{k\mod\frac{n}{2}})+\omega_n^k\cdot A_1(\omega_{\frac{n}{2}}^{k\mod\frac{n}{2}}), \space \text{where}\space k\in\{0,1,2,...,n-1\} \ 1$$  
+$$A(\omega_n^k)=A_0(\omega_{\frac{n}{2}}^{k\mod\frac{n}{2}})+\omega_n^k\cdot A_1(\omega_{\frac{n}{2}}^{k\mod\frac{n}{2}}), \space \text{where}\space k\in\{0,1,2,...,n-1\}$$  
 
 Now the calculation of $DFT_n$ is reduced to two calculations of $DFT_{\frac{n}{2}}$ along with $2n-1$ other operations including $n$ operation $+$ and $n-1$ operation $\times$.  
