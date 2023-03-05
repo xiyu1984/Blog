@@ -23,28 +23,24 @@ Let $\{x_0, A(x_0)\}, \{x_1, A(x_1)\}, ..., \{x_{n-1}, A(x_{n-1})\}$ be the $n$ 
 
 $$
 \vec{A_{x_0, x_1, ..., x_{n-1}}} = 
-
 \left[\begin {array}{cc}
 A(x_0)\\
 A(x_1)\\
 \vdots\\
 A(x_{n-1})
 \end{array}\right] =
-
 \left[\begin {array}{cc}
 x_{0}^0&x_{0}^2&...&x_{0}^{n-1}\\
 x_{1}^0&x_{1}^2&...&x_{1}^{n-1}\\
 \vdots&\vdots&\ddots&\vdots\\
 x_{n-1}^0&x_{n-1}^2&...&x_{n-1}^{n-1}
 \end{array}\right] \times 
-
 \left[\begin {array}{cc}
 a_0\\
 a_1\\
 \vdots\\
 a_{n-1}
 \end{array}\right] = 
-
 M \times \vec{a}
 $$
 
@@ -60,7 +56,6 @@ A(x_1)\\
 \vdots\\
 A(x_{n-1})
 \end{array}\right] = 
-
 M^{-1} \times M \times \vec{a} = \vec{a}
 $$
 
