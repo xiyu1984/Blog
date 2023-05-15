@@ -26,7 +26,7 @@ The adversary can:
 
     $$g^{r}y^{c}\equiv g^{r}((\frac{t}{g^{r}})^{\frac{1}{c}})^{c}\equiv t$$
 
-    - $\frac{1}{c}=c^{-1}$ and $c \cdot c^{-1}\equiv1$  
+    - $\frac{1}{c}=c^{-1}$ and $c \cdot c^{-1}\equiv1 \ mod \ \varphi(q)$  
 
 ### Let $y$ Participate in Hash Calculation
 
