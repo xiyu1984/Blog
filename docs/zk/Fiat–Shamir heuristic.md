@@ -31,3 +31,8 @@ The adversary can:
 ### Let $y$ Participate in Hash Calculation
 
 The key point is that if $c=\mathcal{H}(g,y,t)$, the adversary cannot calculate $c$ before $y=g^{x}$ is generated, and if the adversary generates a $y$ not the form $y=g^{x}$ the verification fails.  
+
+## Reference
+
+- [Euler's theorem](https://en.wikipedia.org/wiki/Euler%27s_theorem)
+- [Euler's totient function](https://en.wikipedia.org/wiki/Euler%27s_totient_function)
