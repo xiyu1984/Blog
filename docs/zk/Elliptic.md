@@ -27,7 +27,8 @@ A typic example is simple signature based on addition and acalar multiplication 
 This [article](https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/) provides an intuitive and detailed explanation of how basic operations(addition and scalar multiplication) on an elliptic work algebraically.  
 
 ### Addition
-Simply, only consider two non-zero, non-symmetric points $P = (x_P, y_P)$ and $Q = (x_Q, y_Q)$.  
+Simply, only consider two non-zero, non-symmetric points $P = (x_P, y_P)$ and $Q = (x_Q, y_Q)$. The details of solving the third intersect point can be found [below](#solving-intersect-point-of-elliptic).
+
 * In case $x_P \neq x_Q$:  
 $$m = \frac{y_P - y_Q}{x_P - x_Q}$$  
 $m$ is the slope of $line_{PQ}$.  
@@ -91,3 +92,38 @@ $$m = (3 x_P^2 + a)(2 y_P)^{-1} \bmod{p}$$
 
 ### Scalar Multiplication
 Almost the same as algebraic except that calculation is based on `mod` operation.
+
+## Appendix
+
+### Solving Intersect Point of Elliptic
+
+Knowing $n-1$ roots, the last root of a $n$ degrees function can be easily found by comparing the coefficients. The example of a three degrees function is as below:  
+
+- If $\alpha$ and $\beta$ are two roots of the below function:  
+
+    $$a_3 x^3 + a_2 x^2 + a_1 x + a_0 = 0$$  
+
+- As $a_3(x-\alpha)(x-\beta)(x-\gamma)=0$,  
+    - Comparing the constant coefficient $a_0=-a_3\alpha\beta\gamma$, we can get the third root is $\gamma = -\frac{a_0}{a_3 \alpha\beta}$ 
+    - Comparing the coefficient $a_2 = -(\alpha+\beta+\gamma)$, we can get the third root is $\gamma = -a_2 - (\alpha+\beta)$  
+
+- For an elliptic $y^2=x^3+ax+b \ \text{where} \ 4a^3+27b^2\neq0$, if we know two points $P = (x_P, y_P)$ and $Q = (x_Q, y_Q)$, firstly we can get a line:  
+
+    $$y=mx+c$$  
+
+    where $m=\frac{y_P-y_Q}{x_P-x_Q}$ and $c=y_P-mx_P$  
+
+- To solve the third root of  
+
+    $$\left\{ 
+    \begin {array}{cc}
+    y^2=x^3+ax+b\\
+    y^2=m^2x^2+2mcx+c^2
+    \end{array}
+    \right.$$
+    
+    that is, $x^3+(-m^2)x^2+(a-2mc)x+b=c^2$
+
+- By comparing the coefficient of $a_2=-m^2$, we can get  
+
+    $$x_R=−a_2−(α+β)=m^2-x_P-x_Q$$  
