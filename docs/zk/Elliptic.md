@@ -115,14 +115,12 @@ Knowing $n-1$ roots, the last root of a $n$ degrees function can be easily found
 
 - To solve the third root of  
 
-    $$\left\{ 
-    \begin {array}{cc}
-    y^2=x^3+ax+b\\
-    y^2=m^2x^2+2mcx+c^2
-    \end{array}
-    \right.$$
-    
-    that is, $x^3+(-m^2)x^2+(a-2mc)x+b=c^2$
+$$\left \{ \begin {array}{cc}
+        y^2=x^3+ax+b\\ 
+        y^2=m^2x^2+2mcx+c^2
+\end{array}\right.$$
+
+that is, $x^3+(-m^2)x^2+(a-2mc)x+b=c^2$
 
 - By comparing the coefficient of $a_2=-m^2$, we can get  
 
