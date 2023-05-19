@@ -91,7 +91,9 @@ In case $P == Q$:
 $$m = (3 x_P^2 + a)(2 y_P)^{-1} \bmod{p}$$  
 
 ### Scalar Multiplication
-Almost the same as algebraic except that calculation is based on `mod` operation.
+Almost the same as algebraic except that calculation is based on `mod` operation.  
+
+[Division polynomials](https://en.wikipedia.org/wiki/Division_polynomials) helps.  
 
 ## Appendix
 
