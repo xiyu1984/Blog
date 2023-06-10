@@ -12,7 +12,7 @@ $$c=\mathcal{H}(g,y,t)$$
 
 where $\mathcal{H}$ is a cryptographic hash function.   
 
-If $y=g^{x}$ is selected first (maybe a third party) and given as an input to the adversary who tries to produce a forgery, it is safe ***even if $y$ is not used as a parameter in the hash function***.  
+If $y=g^{x}$ is selected first (maybe a third party) and given as an input to the adversary who tries to produce a forgery, it is safe ***even if*** $y$ ***is not used as a parameter in the hash function***.  
 
 But if $y$ is provided by the prover as part of the proof (now the proof is $(y,t,r)$ ), the adversary can produce a forgery.  
 
