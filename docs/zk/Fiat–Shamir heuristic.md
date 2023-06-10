@@ -20,7 +20,7 @@ But if $y$ is provided by the prover as part of the proof (now the proof is $(y,
 
 The adversary can:  
 
-- Randomly choose $t\in\mathbb{Z^{\ast}_ {q}}$ and $r\in\mathbb{Z^{\ast}_ {q}}$
+- Randomly choose $t\in\mathbb{Z^{\ast}}_ {q}$ and $r\in\mathbb{Z^{\ast}}_ {q}$
 - Provide $y$ from $y\equiv(\frac{t}{g^{r}})^{\frac{1}{c}}$, where $c=\mathcal{H}(g,t)$  
 - The the verification passes as:  
 
