@@ -4,7 +4,7 @@ Operation addition and scalar multiplication on an elliptic can be found [here](
 
 Multiplicative homomorphic hiding based on bilinear mapping of elliptic curves.<sup>[1]</sup><sup>[2]</sup><sup>[3]</sup>
 
-$$ e(\alpha \cdot G_1, \beta \cdot G_1) = \alpha\beta \cdot e(G_1, G_1) = \alpha\beta \cdot \mu_{r} \space \text{where} \space \mu_{r}\in \mathbb{F}^{*}_{q^k} \space \text{and} \space \mu_{r}^r \equiv 1 \mod{q} $$  
+$$e(\alpha \cdot G_1, \beta \cdot G_1) = \alpha\beta \cdot e(G_1, G_1) = \alpha\beta \cdot \mu_{r} \space \text{where} \space \mu_{r}\in \mathbb{F}^{*}_ {q^k} \space \text{and} \space \mu_ {r}^r \equiv 1 \mod{q}$$  
 
 ## Priciple
 Let $f(x) = t(x)s(x)$, $t(x)$ is public, we need to prove we know a polynomial which can devide exactly $t(x)$.
