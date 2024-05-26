@@ -1,5 +1,5 @@
 The first thing is encoding the user-defined struct in off-chain node.js, it will be like this:
-```node.js
+```js
 ...
 /// encode user-defined data with ink api.
 /// the `{"name": "Nika", "age": 18, "phones": ["123", "456"]}, "someone", 666` is user-defined parameters, there're three here

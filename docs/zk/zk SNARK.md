@@ -6,7 +6,7 @@ Multiplicative homomorphic hiding based on bilinear mapping of elliptic curves.<
 
 $$e(\alpha \cdot G_1, \beta \cdot G_2) = \alpha\beta \cdot e(G_1, G_2) = \alpha\beta \cdot \mu_{r} \space \text{where} \space \mu_{r}\in \mathbb{F}^{*}_ {q^k} \space \text{and} \space \mu_ {r}^r \equiv 1 \mod{q}$$  
 
-## Priciple
+## Principle
 Let $f(x) = t(x)s(x)$, $t(x)$ is public, we need to prove we know a polynomial which can devide exactly $t(x)$.
 
 ### Large prime exponential modulo operation
