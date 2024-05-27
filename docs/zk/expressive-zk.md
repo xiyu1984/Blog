@@ -53,6 +53,6 @@ Another interesting and convenient thing is that the values of the $x$-points ar
 
 Until now, there's no difference between `SNARK` and `STARK`, that is, if proving $Z(x)$ is the factor of $F(x)$, the original computation is proved to be right under some *inputs* and *outputs*.  
 
-Essentially, the difference between `SNARK` and `STARK` is how the proof and the related verifying are made, which is the main content in the next chapter, namely, `Polynomial commitment scheme`.  
+Essentially, the difference between `SNARK` and `STARK` is how the proof and the related verification are built, which is the main content in the next chapter, namely, `Polynomial commitment scheme`.  
 
 ## Polynomial commitment scheme
