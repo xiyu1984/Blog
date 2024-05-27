@@ -47,11 +47,11 @@ Then, $F(x)$ will be used to prove the original computation is right, why and ho
 Diving into the processing steps of the `Arithmetization`, it's not very hard to find the related parts in the original computation being encoded in $F(x)$:     
 - variable part: the $f(x)$, which is generated from the values in the *execution trace*. 
 - unvariable part: the *transition constraints* which transforms $f(x)$ to $F(x)$. The transformation is not so intuitive, but at a high level, it restricts $F(x)$ to be evaluated to be `0` in a series of $x$-points known to both the prover and verifier. In the [simplied examples](https://medium.com/starkware/arithmetization-ii-403c3b3f4355), the $x$-points are just the ${g^i}^{n}_{i=0}$, and more complex in `in PLONKish Arithmetizations`.  
-In other words, we can conclude that if $F(x)$ has a factor polynomial $Z(x)=\prod^{l}_{i=0}(x-g^{i})$, all the *transition constraints* are met no matter what the *inputs in the `zk` statement* are, then the original computation is right under some concrete *inputs* and *outputs*.   
+In other words, we can conclude that if $F(x)$ has a factor polynomial $Z(x)=\prod^{l}_{i=0}(x-g^{i})$ , all the *transition constraints* are met no matter what the *inputs in the `zk` statement* are, then the original computation is right under some concrete *inputs* and *outputs*.   
 
-Another interesting and convenient thing is that the values of the $x$-points are just determined by $g$ and $i$, exposing nothing about the values of the *execution trace* of the original computation so that zero-knowledge could be kept.  
+Another interesting and convenient thing is that the values of the $x$-points are just determined by $g$ and $i$ , exposing nothing about the values of the *execution trace* of the original computation so that zero-knowledge could be kept.  
 
-Until now, there's no difference between `SNARK` and `STARK`, that is, if $Z(x)$ is the factor of $F(x)$, both `SNARK` and `STARK` can make a proof that the original computation is right.  
+Until now, there's no difference between `SNARK` and `STARK`, that is, if $Z(x)$ is the factor of $F(x)$ , both `SNARK` and `STARK` can make a proof that the original computation is right.  
 Essentially, the difference between `SNARK` and `STARK` is how the proof and the related verifying are made, which is the main content in the next chapter, namely, `Polynomial commitment scheme`.  
 
 ## Polynomial commitment scheme
