@@ -52,6 +52,7 @@ In other words, we can conclude that if $F(x)$ has a factor polynomial $Z(x)=\pr
 Another interesting and convenient thing is that the values of the $x$-points are just determined by $g$ and $i$, exposing nothing about the values of the *execution trace* of the original computation so that zero knowledge could be kept.  
 
 Until now, there's no difference between `SNARK` and `STARK`, that is, if proving $Z(x)$ is the factor of $F(x)$, the original computation is proved to be right under some *inputs* and *outputs*.  
+
 Essentially, the difference between `SNARK` and `STARK` is how the proof and the related verifying are made, which is the main content in the next chapter, namely, `Polynomial commitment scheme`.  
 
 ## Polynomial commitment scheme
