@@ -53,6 +53,14 @@ Another interesting and convenient thing is that the values of the $x$-points ar
 
 Until now, there's no difference between `SNARK` and `STARK`, that is, if proving $Z(x)$ is the factor of $F(x)$, the original computation is proved to be right under some *inputs* and *outputs*.  
 
-Essentially, the difference between `SNARK` and `STARK` is how the proof and the related verification are built, which is the main content in the next chapter, namely, `Polynomial commitment scheme`.  
+The difference between `SNARK` and `STARK` is how the proof and how the related verification are built, which is the main content in the next chapter, namely, `Polynomial commitment scheme`.  
 
 ## Polynomial commitment scheme
+
+Essentially, the `Polynomial commitment scheme` are used to prove $Z(x)$ is a factor of `F(x)` as mentioned above. Two types of the polynomial commitment will be mentioned below. The one is the `KZG` used by `Halo2`, the other is `FRI` used by `plonky2`, `plonky3`, and `Starknet`.  
+
+There are already a lot of learning materials in this area, so there's no need to introduce them in detail here. Some awesome articles are listed as follows:  
+- `KZG`: elliptic pairing
+    - [KZG polynomial commitments](https://dankradfeist.de/ethereum/2020/06/16/kate-polynomial-commitments.html) by [Dankrad Feist](https://dankradfeist.de/)
+- `FRI`: low-degree polynomial
+    - [Anatomy of a STARK, Part 3: FRI](https://aszepieniec.github.io/stark-anatomy/fri) by [aszepieniec](https://github.com/aszepieniec)  
