@@ -22,9 +22,10 @@ A computation can be expressed as:
 - [*execution trace*](https://medium.com/starkware/arithmetization-i-15c046390862): a series of values from the start to the end of the computation. (note that in the language of `zk`, both the *inputs* and *outputs* of the computation are *inputs in the `zk` statement*)
     - *inputs* of the computation(start)
     - *outputs* of the computation(end)
+    - *constants* of the computation(anywhere)
     - *intermediate values* along with the process of the computation
-- [*Arithmetic Constraint*](https://aszepieniec.github.io/stark-anatomy/overview#arithmetization-and-arithmetic-constraint-system): in another word, [*polynomial constraint*](https://medium.com/starkware/arithmetization-ii-403c3b3f4355). Simply, this is the relationship between the values in the *execution trace*. In most cases, the range of one relationship is limited only to the neighboring rows of the *execution trace*. Normally, there are at least two types of constraints:  
-    - *boundary constraints*: the start and the end values of the *execution trace*. Normally and simplified, the *inputs* and *outputs* of the computation.  
+- [*Arithmetic Constraint*](https://aszepieniec.github.io/stark-anatomy/overview#arithmetization-and-arithmetic-constraint-system): in another word, [*polynomial constraint*](https://medium.com/starkware/arithmetization-ii-403c3b3f4355). Simply, this is the relationship between the values in the *execution trace*. In most cases, the range of one relationship is limited only to the neighboring rows of the *execution trace*. Normally, there are at least [two types of constraints](https://aszepieniec.github.io/stark-anatomy/stark#arithmetic-intermediate-representation-air):  
+    - *boundary constraints*: the start and the end values of the *execution trace*. Normally, the *inputs* and *outputs* of the computation. Sometimes *constant* values at arbitrary places of the *execution trace*.  
     - *transition constraints*: intuitively, it's the calculation steps in the computation itself, as the 'relationships'(formally constraint) between consecutive states tuples in the *execution trace* are established by the calculation steps.
 
 Now let's dissect the composition of the computation in another view, the variable part and the invariable part:  
@@ -60,7 +61,8 @@ The difference between `SNARK` and `STARK` is how the proof and how the related 
 Essentially, the `Polynomial commitment scheme` are used to prove $Z(x)$ is a factor of `F(x)` as mentioned above. Two types of the polynomial commitment will be mentioned below. The one is the `KZG` used by `Halo2`, the other is `FRI` used by `plonky2`, `plonky3`, and `Starknet`.  
 
 There are already a lot of learning materials in this area, so there's no need to introduce them in detail here. Instead, some awesome articles are listed as follows:  
-- `KZG`: elliptic pairing
+- `KZG`: take advantage of elliptic pairing
     - [KZG polynomial commitments](https://dankradfeist.de/ethereum/2020/06/16/kate-polynomial-commitments.html) by [Dankrad Feist](https://dankradfeist.de/)
-- `FRI`: low-degree polynomial
+- `FRI`: take advantage of low-degree polynomial
     - [Anatomy of a STARK, Part 3: FRI](https://aszepieniec.github.io/stark-anatomy/fri) by [aszepieniec](https://github.com/aszepieniec)  
+    - [Anatomy of a STARK, Part 4: The STARK IOP](https://aszepieniec.github.io/stark-anatomy/stark)  
