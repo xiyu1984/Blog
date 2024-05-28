@@ -59,7 +59,7 @@ The difference between `SNARK` and `STARK` is how the proof and how the related 
 
 Essentially, the `Polynomial commitment scheme` are used to prove $Z(x)$ is a factor of `F(x)` as mentioned above. Two types of the polynomial commitment will be mentioned below. The one is the `KZG` used by `Halo2`, the other is `FRI` used by `plonky2`, `plonky3`, and `Starknet`.  
 
-There are already a lot of learning materials in this area, so there's no need to introduce them in detail here. Some awesome articles are listed as follows:  
+There are already a lot of learning materials in this area, so there's no need to introduce them in detail here. Instead, some awesome articles are listed as follows:  
 - `KZG`: elliptic pairing
     - [KZG polynomial commitments](https://dankradfeist.de/ethereum/2020/06/16/kate-polynomial-commitments.html) by [Dankrad Feist](https://dankradfeist.de/)
 - `FRI`: low-degree polynomial
