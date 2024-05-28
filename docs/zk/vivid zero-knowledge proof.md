@@ -1,4 +1,4 @@
-# Expressive zk
+# Vivid Zero-Knowledge Proof
 
 This article aims to make an easy and concrete expression to help understand the main principle of the ZKP technology underground.  
 
