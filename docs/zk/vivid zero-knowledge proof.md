@@ -28,7 +28,7 @@ A computation can be expressed as:
     - *boundary constraints*: the start and the end values of the *execution trace*. Normally, the *inputs* and *outputs* of the computation. Sometimes *constant* values at arbitrary places of the *execution trace*.  
     - *transition constraints*: intuitively, it's the calculation steps in the computation itself, as the 'relationships'(formally constraint) between consecutive states tuples in the *execution trace* are established by the calculation steps.
 
-Now let's dissect the composition of the computation in another view, the variable part and the invariable part:  
+Now let's dissect a concrete computation in another view, the variable part and the invariable part:  
 - **variable part**: the values in the *execution trace*. These parts are variable according to the concrete values of the *inputs* and *outputs* of the computation.
 - **unvariable part**: the *transition constraints*. Intuitively, this part can be considered as the fixed structure of the computation.  
 
@@ -47,7 +47,7 @@ Then, $F(x)$ will be used to prove the original computation is right, why and ho
 
 Diving into the processing steps of the `Arithmetization`, it's not very hard to find the related parts in the original computation being encoded in $F(x)$:     
 - variable part: the $f(x)$, which is generated from the values in the *execution trace*. 
-- unvariable part: the *transition constraints* which transforms $f(x)$ to $F(x)$. The transformation is not so intuitive, but at a high level, it restricts $F(x)$ to be evaluated as `0` in a series of $ x$ points known to both the prover and verifier. In the [simplied examples](https://medium.com/starkware/arithmetization-ii-403c3b3f4355), the $x$-points are just the ${g^i}^{n}_{i=0}$, and more complex in `in PLONKish Arithmetizations`.  
+- unvariable part: the *Arithmetic Constraints* which transforms $f(x)$ to $F(x)$. The transformation is not so intuitive, but at a high level, it restricts $F(x)$ to be evaluated as `0` in a series of $ x$ points known to both the prover and verifier. In the [simplied examples](https://medium.com/starkware/arithmetization-ii-403c3b3f4355), the $x$-points are just the ${g^i}^{n}_{i=0}$, and more complex in `in PLONKish Arithmetizations`.  
 In other words, we can conclude that if $F(x)$ has a factor polynomial $Z(x)=\prod^{l} _{i=0}(x-g^{i})$, all the *transition constraints* are met no matter what the *inputs in the `zk` statement* are, then the original computation is right under some concrete *inputs* and *outputs*.   
 
 Another interesting and convenient thing is that the values of the $x$-points are just determined by $g$ and $i$, exposing nothing about the values of the *execution trace* of the original computation so that zero knowledge could be kept.  
@@ -66,3 +66,7 @@ There are already a lot of learning materials in this area, so there's no need t
 - `FRI`: take advantage of low-degree polynomial
     - [Anatomy of a STARK, Part 3: FRI](https://aszepieniec.github.io/stark-anatomy/fri) by [aszepieniec](https://github.com/aszepieniec)  
     - [Anatomy of a STARK, Part 4: The STARK IOP](https://aszepieniec.github.io/stark-anatomy/stark)  
+
+## Reference
+
+- [Abstract_and_Geometric_Algebra](https://math.libretexts.org/Bookshelves/Abstract_and_Geometric_Algebra)
