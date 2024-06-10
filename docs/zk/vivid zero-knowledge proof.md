@@ -25,7 +25,7 @@ A computation can be expressed as:
     - *constants* of the computation(anywhere)
     - *intermediate values* along with the process of the computation
 - [*Arithmetic Constraint*](https://aszepieniec.github.io/stark-anatomy/overview#arithmetization-and-arithmetic-constraint-system): in another word, [*polynomial constraint*](https://medium.com/starkware/arithmetization-ii-403c3b3f4355). Simply, this is the relationship between the values in the *execution trace*. In most cases, the range of one relationship is limited only to the neighboring rows of the *execution trace*. Normally, there are at least [two types of constraints](https://aszepieniec.github.io/stark-anatomy/stark#arithmetic-intermediate-representation-air):  
-    - *boundary constraints*: the start and the end values of the *execution trace*. Normally, the *inputs* and *outputs* of the computation. Sometimes *constant* values at arbitrary places of the *execution trace*.  
+    - *boundary constraints*: the start and the end values of the *execution trace*. Normally, the *inputs* and *outputs* of the computation. Sometimes *constant* values are at arbitrary places of the *execution trace*.  
     - *transition constraints*: intuitively, it's the calculation steps in the computation itself, as the 'relationships'(formally constraint) between consecutive states tuples in the *execution trace* are established by the calculation steps.
 
 Now let's dissect a concrete computation in another view, the variable part and the invariable part:  
@@ -47,18 +47,18 @@ Then, $F(x)$ will be used to prove the original computation is right, why and ho
 
 Diving into the processing steps of the `Arithmetization`, it's not very hard to find the related parts in the original computation being encoded in $F(x)$:     
 - variable part: the $f(x)$, which is generated from the values in the *execution trace*. 
-- unvariable part: the *Arithmetic Constraints* which transforms $f(x)$ to $F(x)$. The transformation is not so intuitive, but at a high level, it restricts $F(x)$ to be evaluated as `0` in a series of $ x$ points known to both the prover and verifier. In the [simplied examples](https://medium.com/starkware/arithmetization-ii-403c3b3f4355), the $x$-points are just the ${g^i}^{n}_{i=0}$, and more complex in `in PLONKish Arithmetizations`.  
+- unvariable part: the *Arithmetic Constraints* which transforms $f(x)$ to $F(x)$. The transformation is not so intuitive, but at a high level, it restricts $F(x)$ to be evaluated as `0` in a series of $x$ points known to both the prover and verifier. In the [simplied examples](https://medium.com/starkware/arithmetization-ii-403c3b3f4355), the $x$-points are just the ${g^i}^{n}_{i=0}$, and more complex in `in PLONKish Arithmetizations`.  
 In other words, we can conclude that if $F(x)$ has a factor polynomial $Z(x)=\prod^{l} _{i=0}(x-g^{i})$, all the *transition constraints* are met no matter what the *inputs in the `zk` statement* are, then the original computation is right under some concrete *inputs* and *outputs*.   
 
 Another interesting and convenient thing is that the values of the $x$-points are just determined by $g$ and $i$, exposing nothing about the values of the *execution trace* of the original computation so that zero knowledge could be kept.  
 
 Until now, there's no difference between `SNARK` and `STARK`, that is, if proving $Z(x)$ is the factor of $F(x)$, the original computation is proved to be right under some *inputs* and *outputs*.  
 
-The difference between `SNARK` and `STARK` is how the proof and how the related verification are built, which is the main content in the next chapter, namely, `Polynomial commitment scheme`.  
+The difference between `SNARK` and `STARK` is how the proof and the related verification are built, which is the main content in the next chapter, namely, the `Polynomial commitment scheme`.  
 
 ## Polynomial commitment scheme
 
-Essentially, the `Polynomial commitment scheme` are used to prove $Z(x)$ is a factor of `F(x)` as mentioned above. Two types of the polynomial commitment will be mentioned below. The one is the `KZG` used by `Halo2`, the other is `FRI` used by `plonky2`, `plonky3`, and `Starknet`.  
+Essentially, the `Polynomial commitment scheme` is used to prove $Z(x)$ is a factor of `F(x)` as mentioned above. Two types of the polynomial commitment will be mentioned below. One is the `KZG` used by `Halo2`, and the other is `FRI` used by `plonky2`, `plonky3`, and `Starknet`.  
 
 There are already a lot of learning materials in this area, so there's no need to introduce them in detail here. Instead, some awesome articles are listed as follows:  
 - `KZG`: take advantage of elliptic pairing
