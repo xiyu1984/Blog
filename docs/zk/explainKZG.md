@@ -1,9 +1,7 @@
 
 We start from:
 
-$
-e(\pi,; [Z(s)]_2) = e(C - [I(s)]_1,; H)
-$
+$e(\pi,; [Z(s)]_2) = e(C - [I(s)]_1,; H)$
 
 from the [KZG commitment](https://dankradfeist.de/ethereum/2020/06/16/kate-polynomial-commitments.html).
 
@@ -13,9 +11,7 @@ from the [KZG commitment](https://dankradfeist.de/ethereum/2020/06/16/kate-polyn
 
 ### ✔ Commitment
 
-$
-C = [f(s)]_1
-$
+$C = [f(s)]_1$
 
 * This is the commitment to the polynomial $f(x)$
 * Lives in $G_1$
@@ -55,9 +51,7 @@ The verifier needs:
 
 From this, the verifier computes:
 
-$
-[Z(s)]_2 = [s - z]_2
-$
+$[Z(s)]_2 = [s - z]_2$
 
 👉 So VK = “structured reference string” in $G_2$
 
@@ -75,9 +69,7 @@ These are values the verifier knows:
 
 From these, the verifier builds:
 
-$
-[I(s)]_1 = [y]_1
-$
+$[I(s)]_1 = [y]_1$
 
 ---
 
@@ -113,9 +105,7 @@ There are two kinds of secrets:
 
 ## Left side:
 
-$
-e(\pi,; [Z(s)]_2)
-$
+$e(\pi,; [Z(s)]_2)$
 
 * Uses:
 
@@ -130,9 +120,7 @@ $
 
 ## Right side:
 
-$
-e(C - [I(s)]_1,; H)
-$
+$e(C - [I(s)]_1,; H)$
 
 * Uses:
 
@@ -149,20 +137,14 @@ $
 
 The equation checks:
 
-$
-f(s) - y = (s - z)\cdot q(s)
-$
+$f(s) - y = (s - z)\cdot q(s)$
 
 Which implies:
 
-$
-f(x) - y \text{ is divisible by } (x - z)
-$
+$f(x) - y \text{ is divisible by } (x - z)$
 
 👉 Therefore:
-$
-f(z) = y
-$
+$f(z) = y$
 
 ---
 
