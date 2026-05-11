@@ -1,7 +1,7 @@
 
 We start from:
 
-$e(\pi,; [Z(s)]_2) = e(C - [I(s)]_1,; H)$
+$e(\pi, [Z(s)]_2) = e(C - [I(s)]_1, H)$
 
 from the [KZG commitment](https://dankradfeist.de/ethereum/2020/06/16/kate-polynomial-commitments.html).
 
@@ -28,9 +28,7 @@ $C = [f(s)]_1$
 
 ### ✔ Proof
 
-$
-\pi = \left[\frac{f(s) - f(z)}{s - z}\right]_1
-$
+$\pi = \left[\frac{f(s) - f(z)}{s - z}\right]_1$
 
 * Also a point in $G_1$
 
@@ -120,7 +118,7 @@ $e(\pi,; [Z(s)]_2)$
 
 ## Right side:
 
-$e(C - [I(s)]_1,; H)$
+$e(C - [I(s)]_1, H)$
 
 * Uses:
 
